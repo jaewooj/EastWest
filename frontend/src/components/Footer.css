@@ -1,0 +1,8 @@
+#footer {
+    width: 100%; 
+}
+#footer .inner {
+    height: 50px;
+    /* padding-top: 50px; */
+}
+

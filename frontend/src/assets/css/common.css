@@ -1,0 +1,12 @@
+#wrap, #header, #footer,.main { 
+    width: 100%; 
+}
+.inner { margin: auto; position: relative; box-sizing: border-box; 
+    /* 내가 변경 */
+    width: 100%; 
+    padding-left: 2%;
+    padding-right: 2%;
+}
+
+#header { border-bottom: 0px solid #000;}
+#main{ border-bottom: 0px solid #000;}

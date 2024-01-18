@@ -1,0 +1,45 @@
+.realGr {
+    width: 50%;
+    height: 100%;
+    box-sizing: border-box;
+    border: 0px solid #000;
+}
+.realGr .realGrTt {
+    font-size: 16px;
+    font-weight: 600;
+    padding-left: 5px;
+    padding-top: 3px;
+    display: flex;
+    margin-top: 5px;
+}
+.realGr .realGrTt .mark::before {
+    content: '';
+    display: inline-block;
+    width: 10px;
+    height: 20px;
+    margin-right: 2px;
+    vertical-align: middle;
+    margin-bottom: 3px;
+    background: #B9CFFF;
+}
+.realGr .realGrTt .mark::after {
+    content: '';
+    display: inline-block;
+    width: 3px;
+    height: 20px;
+    background: #000;
+    vertical-align: middle;
+    margin-right: 10px;
+    margin-bottom: 3px;
+    background: #B9CFFF;
+}
+.realGr .radialGp {
+    width: 35%;
+    height: 50%;
+    margin: auto;
+    display: block;
+}
+.realGr .grEff {
+    text-align: center;
+    font-size: 12px;
+}

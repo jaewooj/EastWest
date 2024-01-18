@@ -1,0 +1,130 @@
+.timeNtc {
+    width: 15%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
+    box-sizing: border-box;
+}
+.timeNtc .realTime {
+    width: 100%;
+    height: 30%;
+    margin-top: 5px;
+    font-size: 16px;
+    text-align: right;
+    font-weight: 700;
+    box-sizing: border-box;
+    position: relative;
+    left: -5px;
+    margin-bottom: 5px;
+}
+.timeNtc .notice {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    vertical-align: middle;
+    justify-content: space-between;
+    align-items: center;
+    border: 2px solid #ffffff;
+    border-radius: 15px;
+    padding-left: 15px;
+    padding-right: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px rgba(255,255,255,0.4);
+    margin-top: 10px;
+    font-weight: 600;
+    color: #4277FF;
+
+}
+.timeNtc .notice .ntcTt {
+    width: 100%;
+    vertical-align: middle;
+    display: flex;
+    position: relative;
+}
+.timeNtc .notice .ntcTt img {
+    position: absolute;
+    width: 20px;
+    height: auto;
+    right: 0;
+    cursor: pointer;
+}
+
+.timeNtc .popupNtc {
+    width: 700px;
+    height: 500px;
+    background: white;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 100px;
+    z-index: 100000;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+}
+.timeNtc .popupNtc .popupHeader {
+    display: flex;
+    width: 100%;
+    background: #018ACE;
+}
+.timeNtc .popupNtc .popupHeader h2 {
+    width: 100%;
+    color: white;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 60px;
+    text-indent: 40px;
+}
+.timeNtc .popupNtc .popupHeader button {
+    margin-right: 0px;
+    width: 80px;
+    font-size: 40px;
+    background: #018ACE;
+    color: white;
+    border: none;
+}
+.timeNtc .popupNtc .popupTable {
+    width: 100%;
+    height: 100%;
+    padding: 20px 20px 20px 20px;
+    box-sizing: border-box;
+}
+.timeNtc .popupNtc .popupTable table {
+    width: 100%;
+    height: auto;
+    text-align: center;
+    font-size: 18px
+}
+.timeNtc .popupNtc .popupTable table th.w1 {
+    /* width: 5%; */
+}
+.timeNtc .popupNtc .popupTable table th.w2 {
+    /* width: 20%; */
+}
+.timeNtc .popupNtc .popupTable table th.w3 {
+    /* width: 20%; */
+}
+.timeNtc .popupNtc .popupTable table th.w4 {
+    /* width: 20%; */
+}
+.timeNtc .popupNtc .popupTable table td {
+    width: auto;
+    height: 50px;
+    line-height: 50px;
+}
+.timeNtc .popupNtc .popupTable table td {
+    /* height: 20px; */
+    border: 1px solid #000;
+}
+.moreBg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background: #616161;
+    opacity: 0.3;
+    z-index: 10000;
+}
