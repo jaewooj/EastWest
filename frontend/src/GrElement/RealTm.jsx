@@ -21,9 +21,9 @@ const RealTm = () => {
                     text={`${value}h`} 
                     styles={buildStyles({
                         // Colors
-                        pathColor: `#5486A0`,
+                        pathColor: `#F0884E`,
                         textColor: '#4277FF',
-                        trailColor: '#96D5E0',
+                        trailColor: '#d0d0d0',
                     })}
                 />
             </div>

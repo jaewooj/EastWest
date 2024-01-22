@@ -5,15 +5,16 @@
     flex-direction: column;
     vertical-align: middle;
     justify-content: space-between;
-    border: 2px solid #bdbdbd;
+    border: 2px solid #ffffff;
     border-radius: 15px;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
     box-sizing: border-box;
-    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    box-shadow: 0 0 5px rgba(255,255,255,0.3);
     margin-right: 10px;
+    background: rgba(255,255,255,0.3);
 }
 .overView .oVTop {
     height: 11%;
@@ -65,10 +66,10 @@
 .overView .oVTop .oVMenu .menuBox {
     width: 19.8%;
     height: 100%;
-    border: 1px solid #bdbdbd;
     border-radius: 5px;
     background: #ffffff;
-
+    font-weight: 600;
+    color: #4763ed;
 }
 .overView .oVTop .oVMenu .menuBoxOn {
     background: #5182FF;
@@ -77,14 +78,13 @@
 }
 .overView .oVCon {
     height: 88%;
-    width: 100%;
-    border: 2px solid #bdbdbd;
-    border-radius: 15px;
+    /* width: 100%; */
+    /* border: 0px solid #bdbdbd; */
+    /* border-radius: 15px; */
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
     box-sizing: border-box;
-    box-shadow: 0 0 5px rgba(0,0,0,0.3);
-    background: #EFF4FF;
+    /* box-shadow: 0 0 5px rgba(0,0,0,0.3); */
 }

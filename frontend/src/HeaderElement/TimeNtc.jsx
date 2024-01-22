@@ -40,7 +40,10 @@ const TimeNtc = () => {
             </div>
             <div className="notice">
                 <div className="ntcTt">
-                    <p>공지사항 : 장비관리에 주의 필요</p>
+                    <div className="ntcTtAni">
+                        <p>공지사항 : 장비관리에 주의 필요</p>
+
+                    </div>
                     <img src="/images/more1.png" onClick={popupOn}/>
                 </div>
             </div>

@@ -13,7 +13,7 @@ const Title = () => {
                 </a>
             </div>
             <div className="swTitle">
-                <h2 className='gradientText'>태양광발전모니터링시스템</h2>
+                <h2>태양광발전모니터링시스템</h2>
             </div>
         </div>
     );

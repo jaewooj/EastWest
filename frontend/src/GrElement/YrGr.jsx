@@ -22,7 +22,7 @@ const YrGr = () => {
                         // Colors
                         pathColor: `#5486A0`,
                         textColor: '#4277FF',
-                        trailColor: '#96D5E0',
+                        trailColor: '#d0d0d0',
                     })}
                 />
             </div>

@@ -21,9 +21,9 @@ const RealGr = () => {
                     text={`${value * 100}kW`} 
                     styles={buildStyles({
                         // Colors
-                        pathColor: `#5486A0`,
+                        pathColor: `#5D8BF6`,
                         textColor: '#4277FF',
-                        trailColor: '#96D5E0',
+                        trailColor: '#d0d0d0',
                     })}
                 />
             </div>

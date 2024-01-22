@@ -1,6 +1,6 @@
 
 .gradientText {
-    background-image: linear-gradient(to bottom, #4277FF, rgba(66,119,255,0.3)); /* 그래디언트 배경 */
+    background-image: linear-gradient(to bottom, #265180, #395a7e); /* 그래디언트 배경 */
     -webkit-background-clip: text; /* 텍스트에 배경 적용 */
     background-clip: text;
     color: transparent; /* 투명한 글자 */

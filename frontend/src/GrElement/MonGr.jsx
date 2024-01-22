@@ -21,9 +21,9 @@ const MonGr = () => {
                     text={`${value}h`} 
                     styles={buildStyles({
                         // Colors
-                        pathColor: `#5486A0`,
+                        pathColor: `#5C9FE7`,
                         textColor: '#4277FF',
-                        trailColor: '#96D5E0',
+                        trailColor: '#d0d0d0',
                     })}
                 />
             </div>

@@ -1,15 +1,16 @@
 .invCon {
     width: 30%;
     height: 100%;
-    border: 2px solid #bdbdbd;
+    border: 2px solid #ffffff;
     border-radius: 15px;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
     box-sizing: border-box;
-    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    box-shadow: 0 0 5px rgba(255,255,255,0.3);
     margin-right: 10px;
+    background: rgba(255,255,255,0.3);
 }
 .invCon .invTop {
     height: 11%;
@@ -60,14 +61,14 @@
     overflow: auto;
 }
 .invCon .invDt .invEa {
-    border: 2px solid #bdbdbd;
+    border: 2px solid #ffffff;
     border-radius: 15px;
     padding-left: 10px;
     padding-right: 10px;
     padding-top: 5px;
     padding-bottom: 5px;
     box-sizing: border-box;
-    box-shadow: 0 0 5px rgba(0,0,0,0.3);
+    box-shadow: 0 0 5px rgba(255,255,255,0.1);
     background: #EFF4FF;
     display: flex;
     flex-direction: row;
@@ -90,8 +91,10 @@
 }
 .invCon .invDt .invEa .invEaTt p {
     font-size: 14px;
+    font-weight: 600;
     height: 25%;
     cursor: pointer;
+    margin-left: 5px;
 }
 .invCon .invDt .invEa .invEaTt .detail {
     border: 0px solid #000;
@@ -108,48 +111,24 @@
 .invCon .invDt .invEa .invEaTt .detail table tr {
     height: 50%;
 }
+.invCon .invDt .invEa .invEaTt .detail table tr:first-child {
+    background: #5974ef;
+    color: #ffffff;
+    font-weight: 600;
+}
+.invCon .invDt .invEa .invEaTt .detail table tr:last-child {
+    background: #ffffff;
+}
 .invCon .invDt .invEa .invEaTt .detail table td {
     border: 1px solid #ffffff;
     vertical-align: middle;
-    background: #ffffff;
     box-sizing: border-box;
     box-shadow: 0px 2px 4px #ededed;
-    border-radius: 10px;
+    border-radius: 5px;
+    font-size: 10px;
     
 }
-.invCon .popupInv {
-    width: 700px;
-    height: 500px;
-    background: white;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    top: 100px;
-    z-index: 100000;
-    box-sizing: border-box;
-    flex-wrap: wrap;
-}
-.invCon .popupInv .popupHeader {
-    display: flex;
-    width: 100%;
-    background: #018ACE;
-}
-.invCon .popupInv .popupHeader h2 {
-    width: 100%;
-    color: white;
-    font-size: 26px;
-    font-weight: 700;
-    line-height: 60px;
-    text-indent: 40px;
-}
-.invCon .popupInv .popupHeader button {
-    margin-right: 0px;
-    width: 80px;
-    font-size: 40px;
-    background: #018ACE;
-    color: white;
-    border: none;
-}
+
 .moreBg {
     position: fixed;
     left: 0;

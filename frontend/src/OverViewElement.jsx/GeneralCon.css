@@ -5,7 +5,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    padding: 20px 15px;
+    padding: 20px 0px 20px 15px;
     box-sizing: border-box;
 }
 .generalCon .pic {
@@ -19,6 +19,8 @@
 .generalCon .pic img {
     width: 100%;
     height: 100%;
+    padding: 2px 0;
+    box-sizing: border-box;
 }
 .generalCon .content {
     width: 60%;
@@ -33,25 +35,31 @@
     font-size: 16px;
     box-sizing: border-box;
     /* table-layout: auto; */
-    border-spacing: 3px;
+    border-spacing: 4px;
     border-collapse: separate;
 }
 .generalCon .content table tr {
 }
-.generalCon .content td {
+.generalCon .content table tr td {
     border: 1px solid #ffffff;
     vertical-align: middle;
-    background: #ffffff;
     box-sizing: border-box;
-    box-shadow: 0px 2px 4px #ededed;
+    box-shadow: 0px 2px 4px rgba(255,255,255,0.3);
+    border-radius: 5px;
     
 }
 .generalCon .content table tr:first-child {
     font-weight: 600;
+    background: rgb(231, 152, 34);
+    color: #ffffff;
 }
-td:first-child {
+.generalCon .content table tr {
+    background: #f6f6f6;
+    color: #82A4CD;
+}
+.generalCon .content table tr td:first-child {
     width: 20%;
 }
-td:last-child {
+.generalCon .content table tr td:last-child {
     width: 80%;
 }
