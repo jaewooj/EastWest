@@ -1,15 +1,6 @@
 
 const mysql = require('mysql2/promise');
-
-const connectDatabase = async () => {
-    const connection = await mysql.createConnection({
-        host : 'localhost',
-        user: 'root',
-        password: '12345',
-        database: 'rems'
-    });
-    return connection;
-}
+const connectDatabase = require('./connectDb')
 
 const createDailyTable = async (connection, year, month, day) => {
     const tableName = `data_${year}_${month}_${day}`;
@@ -93,7 +84,7 @@ const createTableOnStart = async () => {
 
 createTableOnStart()
     .then(async (connection) => {
-        await insertData(connection, 2024, 1, 16, dataToInsert);
+        await insertData(connection, 2024, 1, 22, dataToInsert);
         await connection.end();
     })
     .catch(error => {
