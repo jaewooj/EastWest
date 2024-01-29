@@ -1,13 +1,34 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './GeneralCon.css'
 
 const GeneralCon = () => {
 
+    useEffect(()=>{
+        const container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+        const options = { //지도를 생성할 때 필요한 기본 옵션
+            center: new kakao.maps.LatLng(38.25723199999999, 127.4584573), //지도의 중심좌표.
+            level: 3, //지도의 레벨(확대, 축소 정도)
+        };
+        const map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+        
+        //마커가 표시 될 위치
+        const markerPosition = new kakao.maps.LatLng(
+            38.25723199999999,
+            127.4584573
+        );
 
+        // 마커를 생성
+        const marker = new kakao.maps.Marker({
+            position: markerPosition
+        });
+
+        // 마커를 지도 위에 표시
+        marker.setMap(map);
+    },[])
     return (
         <div className="generalCon conBox">
             <div className="pic">
-                <img src="/images/factory.png" alt="" />
+                <div className="map" id="map"></div>
             </div>
             <div className="content"> 
                 <table>

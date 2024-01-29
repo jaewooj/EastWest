@@ -4,6 +4,11 @@ const getWeatherData = async () => {
     const url = 'http://apis.data.go.kr/1360000/VilageFcstInfoService_2.0/getUltraSrtFcst';
 
     const now = new Date();
+    const year = now.getFullYear();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0'); // 월은 0부터 시작하므로 +1 해주고 두 자리로 포맷팅합니다.
+    const day = now.getDate().toString().padStart(2, '0'); // 일을 두 자리로 포맷팅합니다.
+    const formattedDate = `${year}${month}${day}`;
+    
     const time = now.getHours()- 1;
     const timeSet = time.toString().padStart(2,'0');
     // console.log(timeSet);
@@ -13,7 +18,7 @@ const getWeatherData = async () => {
         pageNo: '4',
         numOfRows: '6',
         dataType: 'JSON',
-        base_date: '20240123',
+        base_date: `${formattedDate}`,
         base_time: `${timeSet}00`,
         nx: '68',
         ny: '141',
@@ -31,5 +36,4 @@ const getWeatherData = async () => {
         throw error; // 에러를 상위로 던져서 처리하도록 함
     }
 };
-
 module.exports = getWeatherData;

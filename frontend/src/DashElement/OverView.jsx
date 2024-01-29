@@ -30,6 +30,12 @@ const OverView = () => {
           setIntervalId(null);
         }
       };
+      const startStopInterval = () => {
+        stopInterval();
+      }
+      const startStartInterval = () => {
+        startInterval();
+      }
 
     const onGo = (num) =>{
         // 기존의 setInterval 중지
@@ -62,7 +68,7 @@ const OverView = () => {
                     <button className={indexNum===5?"menuBox menuBoxOn pWFlow":"menuBox"} onClick={()=>onGo(5)}>월별 발전량</button>
                 </div>
             </div>
-            <div className="oVCon">
+            <div className="oVCon" onMouseEnter={startStopInterval} onMouseLeave={startStartInterval}>
                 {
                 indexNum===1?<GeneralCon/>:
                 indexNum===2?<PowerFlow/>:
