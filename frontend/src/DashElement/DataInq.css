@@ -11,5 +11,32 @@
     box-shadow: 0 0 5px rgba(255,255,255,0.3);
     margin-right: 20px;
     background: rgba(255,255,255,0.3);
-
+}
+.dataInq .dataInqTop {
+    margin-top: 5px;
+    height: 18%;
+    width: 100%;
+    background: rgb(255,255,255,0.8);
+    box-sizing: border-box;
+    display: flex;
+    border-radius: 8px;
+}
+.dataInq .dataInqTop .checkData {
+    height: 100%;
+    width: 40%;
+    padding-left: 15px;
+    /* background: #9b9b9b; */
+    box-sizing: border-box;
+}
+.dataInq .dataInqTop .dataInqSearch {
+    height: 100%;
+    width: 60%;
+    /* background: #ffcaca; */
+}
+.dataInq .dataInqBm {
+    margin-top: 4px;
+    height: 76%;
+    width: 100%;
+    /* background: rgb(236, 236, 236); */
+    
 }

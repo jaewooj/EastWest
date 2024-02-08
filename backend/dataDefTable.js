@@ -3,8 +3,8 @@ const connectDatabase = require('./connectDb')
 
 const dataDefTable = async () => {
     const tableName = `DATA_DEF_TB`
-    const connection = await connectDatabase();
-
+    let connection;
+    
     const createTableQuery = `
         CREATE TABLE IF NOT EXISTS ${tableName} (
             grp_cd VARCHAR(5) NOT NULL, 
@@ -16,7 +16,7 @@ const dataDefTable = async () => {
         )
     `
     try {
-        const connection = await connectDatabase();
+        connection = await connectDatabase();
 
         await connection.execute(createTableQuery);
         console.log(`definition table created successfully`);
@@ -25,7 +25,9 @@ const dataDefTable = async () => {
     } finally {
         // 연결 닫기
         // await connection.end();
-        connection.release();
+        if (connection) {
+            connection.release();
+        }
     }
 }
 module.exports=dataDefTable;

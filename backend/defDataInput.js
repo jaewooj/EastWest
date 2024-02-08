@@ -6,7 +6,7 @@ const defDataInput = async () => {
     const tableName = 'DATA_DEF_TB';
     
     const dataToInsert = dataDef();
-    const connection = await connectDatabase();
+    let connection;
 
     const insertQuery = `
         INSERT IGNORE INTO ${tableName} 
@@ -15,7 +15,7 @@ const defDataInput = async () => {
     `;
 
     try {
-        const connection = await connectDatabase();
+        connection = await connectDatabase();
 
         for(const data of dataToInsert){
             await connection.execute(insertQuery, [
@@ -34,7 +34,9 @@ const defDataInput = async () => {
     } finally {
         // 연결 닫기
         // await connection.end();
-        connection.release();
+        if (connection) {
+            connection.release();
+        }
     }
 };
 

@@ -1,4 +1,4 @@
-const getWeatherData = require('./weatherApi');
+/* const getWeatherData = require('./weatherApi');
 
 (async () => {
     try {
@@ -7,4 +7,4 @@ const getWeatherData = require('./weatherApi');
     } catch (error) {
         console.error('에러:', error);
     }
-})();
+})(); */

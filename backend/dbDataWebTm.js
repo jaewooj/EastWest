@@ -1,4 +1,5 @@
 const dbDataCt = require('./dbDataCt');
+const fourteenDataCt = require('./fourteenDataCt');
 
 
 const dbDataWebTm = async () =>{
@@ -13,15 +14,22 @@ const dbDataWebTm = async () =>{
     
     try {
         let data = await dbDataCt();
+        let fourtennData = await fourteenDataCt();
         cron.schedule('1 * * * * *', async()=>{
             data = await dbDataCt();
+            /* fourteenData = await fourteenDataCt(); */
         })
         app.get('/test',(req,res)=>{
-            let dbData = {
+            /* let dbData = {
                 dbData : data
-            }
+            } */
+            let dbData = data;
             res.json(dbData);
         })
+        /* app.get('/test01',(req,res)=>{
+            let dbData01 = fourtennData;
+            res.json(dbData01);
+        }) */
         app.listen(port, () => {
             console.log(`서버가 http://localhost:${port} 에서 실행 중입니다.`);
         });

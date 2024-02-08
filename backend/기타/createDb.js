@@ -1,6 +1,6 @@
 
 const mysql = require('mysql2/promise');
-const connectDatabase = require('./connectDb')
+const connectDatabase = require('../connectDb')
 
 const createDailyTable = async (connection, year, month, day) => {
     const tableName = `data_${year}_${month}_${day}`;

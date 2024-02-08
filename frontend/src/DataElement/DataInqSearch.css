@@ -1,0 +1,15 @@
+.dataInq .dataInqTop .dataInqSearch {
+    display: flex;
+    justify-content: end;
+
+}
+.dataInq .dataInqTop .dataInqSearch .excelDown {
+}
+.dataInq .dataInqTop .dataInqSearch .dateSearch {
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 55%;
+    /* border: 1px solid #0011ff; */
+}

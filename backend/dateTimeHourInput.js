@@ -2,7 +2,8 @@ const mysql = require('mysql2/promise');
 const connectDatabase = require('./connectDb');
 const nowTime = require('./nowTime');
 
-const dateTimeInput = async () => {
+
+const dateTimeHourInput = async () => {
     const now = nowTime();
     let connection;
     const year = now.getFullYear();
@@ -11,7 +12,7 @@ const dateTimeInput = async () => {
     const hour =now.getHours();
     const minute = now.getMinutes();
     const dateTime = `${year}-${month}-${day} ${hour}:${minute}:00`;
-    const tableName = `DATA_${year}_${month}_${day}`;
+    const tableName = `DATA_${year}_${month}_${day}_hour`;
     const getMaxTimeNmQuery = `SELECT MAX(time_nm) AS max_timeNm FROM ${tableName}`;
     
     const insertQuery = `
@@ -38,5 +39,4 @@ const dateTimeInput = async () => {
     }
 };
 
-module.exports=dateTimeInput;
-// insertDateTime();
+module.exports=dateTimeHourInput;

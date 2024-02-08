@@ -2,7 +2,7 @@ const mysql = require('mysql2/promise');
 const connectDatabase = require('./connectDb');
 const nowTime = require('./nowTime');
 
-const dbDataCt = async () => {
+const fourteenDataCt = async () => {
     const now = nowTime();
     const year = now.getFullYear();
     const month = now.getMonth()+1;
@@ -10,12 +10,11 @@ const dbDataCt = async () => {
     const hour =now.getHours();
     const minute = now.getMinutes();
     const dateTime = `${year}-${month}-${day} ${hour}:${minute}:00`;
-    const tableName = `DATA_${year}_${month}_${day}`;
+    const tableName = `DATA_${year}_${month}_${day}_hour`;
     const connection = await connectDatabase();
 
     const selectQuery = `
         SELECT * FROM ${tableName}
-        WHERE date_time = '${dateTime}'
     `
     try {
 
@@ -31,4 +30,4 @@ const dbDataCt = async () => {
         }
     }
 }
-module.exports=dbDataCt;
+module.exports=fourteenDataCt;

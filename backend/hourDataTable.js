@@ -2,15 +2,15 @@ const mysql = require('mysql2/promise');
 const connectDatabase = require('./connectDb');
 const nowTime = require('./nowTime');
 
-const dataCtTable = async () => {
+const hourDataTable = async () => {
     const now = nowTime();
     const year = now.getFullYear();
     const month = now.getMonth()+1;
     const day = now.getDate();
-    const tableName = `DATA_${year}_${month}_${day}`;
+    const tableName = `DATA_${year}_${month}_${day}_hour`;
     const connection = await connectDatabase();
-
-    const createTableQuery = `
+    
+    const createHourTableQuery = `
         CREATE TABLE IF NOT EXISTS ${tableName} (
             time_nm INT NOT NULL PRIMARY KEY,
             date_time VARCHAR(20) NOT NULL,
@@ -87,15 +87,17 @@ const dataCtTable = async () => {
         )
     `
     try {
-        await connection.execute(createTableQuery);
-        console.log(`collection table created successfully`);
-    } catch(error) {
+        await connection.execute(createHourTableQuery);
+        console.log(`hour table created successfully`);
+    } catch (error){
         console.error(`Error occur:`, error);
     } finally {
-        if (connection) {
+        if(connection) {
             connection.release();
         }
     }
 }
-module.exports=dataCtTable;
-// dataCtTable();
+module.exports=hourDataTable;
+
+
+

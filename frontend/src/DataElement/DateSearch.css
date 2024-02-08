@@ -1,0 +1,59 @@
+.dateSearch {
+}
+.dateSearch p {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 3px;
+    font-weight: 700;
+    margin-left: 5px;
+    margin-right: 5px;
+    
+}
+.dateSearch .react-datepicker-wrapper {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: 1px solid #000;
+    background: #f0f0f0;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+.dateSearch .react-datepicker-wrapper .react-datepicker__input-container {
+    margin: auto;
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+}
+.dateSearch .react-datepicker-wrapper .react-datepicker__input-container .custom-input {
+
+}
+.dateSearch .react-datepicker-wrapper:hover {
+    border: 1px solid #c0c0c0;
+    background: #fff;
+    box-shadow: 1px 1px 2px #637af8, -1px -1px 2px #637af8 ;
+}
+.dateSearch .searchBtn {
+    display: flex;
+    margin-bottom: 2px;
+    margin-left: 20px;
+    display: inline-block;
+    padding: 5px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+    background-color: #2587c9;
+    box-shadow: 2px 2px 1px rgba(25, 47, 110, 0.4), -2px 2px 1px rgba(25, 47, 110, 0.4);
+    color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    margin-right: 15px;
+}
