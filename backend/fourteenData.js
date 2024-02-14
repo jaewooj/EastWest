@@ -24,7 +24,7 @@ const fourteenData = async () => {
         WHERE date_time = ?;
     `
     const sumDataQuery = `
-        SELECT SUM(r001) AS total_r001 FROM ${tableName}
+        SELECT SUM(r001) AS total_r001, SUM(r060) AS total_r060 FROM ${tableName}
         WHERE time_nm BETWEEN ? AND ?;
     `
     try {
@@ -37,8 +37,9 @@ const fourteenData = async () => {
 
         if (rows && rows.length > 0) {
             const totalR001 = (rows[0].total_r001)/15;
+            const totalR060 = (rows[0].total_r060) / 15;
             console.log('Total r001:', totalR001, agoData, ctData);
-            return totalR001;
+            return { totalR001, totalR060 };
         } else {
             console.log('No data found for the specified time range.');
             return null;

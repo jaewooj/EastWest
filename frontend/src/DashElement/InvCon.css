@@ -113,7 +113,8 @@
     height: 50%;
 }
 .invCon .invDt .invEa .invEaTt .detail table tr:first-child {
-    background: #5974ef;
+    /* background: #5974ef; */
+    background: #7a96d1;
     color: #ffffff;
     font-weight: 600;
 }

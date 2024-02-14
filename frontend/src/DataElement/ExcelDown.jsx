@@ -1,15 +1,29 @@
 import React from 'react';
 import './ExcelDown.css'
+import { useSelector } from 'react-redux';
 import * as XLSX from "xlsx";
 
 const ExcelDown = () => {
-    const downloadExcel = (data) => {
-        const worksheet = XLSX.utils.json_to_sheet(data);
+  const xData = useSelector(state => state.item.xData);
+  const yData = useSelector(state => state.item.yDataExcel);
+
+    const downloadExcel = () => {
+      const dataToExport = xData.map((time, index) => ({
+        time,
+        value: yData[index]
+      }));
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const day = String(now.getDate()).padStart(2, '0');
+        const filename = `${year}-${month}-${day}.xlsx`;
+
+        const worksheet = XLSX.utils.json_to_sheet(dataToExport);
         const workbook = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(workbook, worksheet, 'my_sheet');
-        XLSX.writeFile(workbook, '제목은 날짜로.xlsx');
+        XLSX.writeFile(workbook, filename);
     };
-    const sampleData = [
+    /* const sampleData = [
         {
           key: '테스트1',
           value: '결과1',
@@ -26,11 +40,11 @@ const ExcelDown = () => {
           key: 'key4',
           value: 'value4',
         },
-      ];
+      ]; */
 
     return (
         <div className="excelDown">
-            <img className="excelDownImg" src="/images/excel.png" onClick={()=>downloadExcel(sampleData)}/>
+            <img className="excelDownImg" src="/images/excel.png" onClick={downloadExcel}/>
         </div>
     );
 };

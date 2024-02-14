@@ -74,16 +74,22 @@ const TimeNtc = () => {
                             </thead> */}
                             <tbody>
                                 <tr>
-                                    <td>No</td>
+                                    <td>&nbsp;No&nbsp;</td>
                                     <td>제목</td>
-                                    <td>글쓴이</td>
+                                    <td>&nbsp;글쓴이&nbsp;</td>
                                     <td>작성시간</td>
                                 </tr>
                                 <tr>
-                                    <td>1</td>
+                                    <td>2</td>
                                     <td>모듈 어레이 온도 이상</td>
                                     <td>관리자</td>
                                     <td>2024-01-16</td>
+                                </tr>
+                                <tr>
+                                    <td>1</td>
+                                    <td>개발 테스트 중</td>
+                                    <td>관리자</td>
+                                    <td>2024-01-02</td>
                                 </tr>
                             </tbody>
                         </table>

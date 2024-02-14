@@ -122,15 +122,15 @@ const InfoData = () => {
                 <div className="sysCon">
                     <div className="mgBox brkMg">
                         <p>고장진단</p>
-                        <p>양호</p>
+                        <p className="goodCom breakCom">양호</p>
                     </div>
                     <div className="mgBox frMg">
                         <p>화재관리</p>
-                        <p>양호</p>
+                        <p className="goodCom fireCom">양호</p>
                     </div>
                     <div className="mgBox comMg">
                         <p>통신상태</p>
-                        <p>양호</p>
+                        <p className="goodCom comCon">양호</p>
                     </div>
 
                 </div>

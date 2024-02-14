@@ -169,12 +169,24 @@
 .infoData .sysInfo .sysCon .mgBox p:last-child {
     font-size: 10px;
     color: #ffffff;
-    border: 1px solid #ffffff;
-    background: #89a1d3;
     text-align: center;
     padding-left: 15px;
     padding-right: 15px;
     border-radius: 15px;
-    margin-top: -5px;
-    
+    margin-top: -3px;
+    margin-bottom: 2px;
+}
+.infoData .sysInfo .sysCon .mgBox p.goodCom  {
+    animation: blink 2s infinite alternate;
+}
+
+@keyframes blink {
+    from {
+        opacity: 0.8;
+        background: #7a96d1; 
+    }
+    to {
+        opacity: 1;
+        background: #5182FF; 
+    }
 }

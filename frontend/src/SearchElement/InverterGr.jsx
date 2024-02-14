@@ -1,10 +1,12 @@
 import React from 'react';
 import './InverterGr.css';
 import { BarChart } from '@mui/x-charts/BarChart';
+import XAxisData from './XAxisData';
+
 
 const InverterGr = () => {
     
-    const xData03 = []
+    const xData=XAxisData();
     const yData03 = [0]
     
     const valueFormatter = (value) => `${value} [kWh]`;
@@ -12,7 +14,7 @@ const InverterGr = () => {
         <div className="inverterGr">
         <BarChart
             margin={{right:200}}
-            xAxis={[{ scaleType: 'band', data: xData03, label: '(시)' }]}
+            xAxis={[{ scaleType: 'band', data: xData, label: '(시)' }]}
             series={[
                 { data: yData03,
                     label:'인버터별 발전량', 

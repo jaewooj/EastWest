@@ -6,53 +6,56 @@ import TimeGr from '../OverViewElement.jsx/TimeGr';
 import DayGr from '../OverViewElement.jsx/DayGr';
 import MonGr from '../OverViewElement.jsx/MonGr';
 import { useState, useEffect } from 'react';
+import axios from 'axios'; 
+import { useDispatch } from 'react-redux';
+import { changeDashTimeItem } from '../store/modules/itemSlice';
+import { index } from 'd3';
 
 const OverView = () => {
 
     const [indexNum,setIndexNum] = useState(1);
-    const [intervalId, setIntervalId] = useState(null);
+    const [startStat,setStartStat] = useState();
+    const [intervalId,setIntervalId] = useState(1);
+
+    useEffect(()=>{
+      startInterval();
+      return () => {
+        clearInterval(startStat);
+      };
+    },[])
 
     const startInterval = () => {
-        const id = setInterval(() => {
-          // indexNum를 5초마다 변경하는 로직
-          setIndexNum((prevIndex) => (prevIndex === 5 ? 1 : prevIndex + 1));
+      if(intervalId===1){
+        const startIntervalId = setInterval(() => {
+          setIndexNum((prevNum)=>(prevNum % 5)+1);
+          // console.log(indexNum);
         }, 5000);
-    
-        // 현재 intervalId 상태를 업데이트
-        setIntervalId(id);
-      };
-    
-      const stopInterval = () => {
-        // 현재 intervalId가 존재하면 clearInterval 호출하여 중지
-        if (intervalId) {
-          clearInterval(intervalId);
-          // intervalId 상태를 초기화
-          setIntervalId(null);
-        }
-      };
-      const startStopInterval = () => {
-        stopInterval();
+        setStartStat(startIntervalId);
+        // console.log(startIntervalId);
       }
-      const startStartInterval = () => {
-        startInterval();
-      }
+    }
+    
+    const stopInterval = () => {
+      clearInterval(startStat);
 
-    const onGo = (num) =>{
-        // 기존의 setInterval 중지
-        stopInterval();
-    
-        // indexNum 설정
-        setIndexNum(num);
-    
-        // 새로운 setInterval 시작
-        startInterval();
     }
 
-    useEffect(() => {
-        // 컴포넌트가 언마운트될 때 clearInterval 호출하여 메모리 누수 방지
-        return () => startInterval();
-      }, []); // 빈 배열을 전달하여 컴포넌트가 처음 렌더링될 때만 실행되도록 함
+    const onGo = (num) => {
+      stopInterval();
+      // console.log('오류');
+      setIndexNum(num);
+      // console.log(intervalId);
+      startInterval();
+    }
     
+    const mouseEnter = () => {
+      stopInterval(); // 마우스가 올라갔을 때 setInterval 중지
+    };
+
+    const mouseLeave = () => {
+      startInterval(); // 마우스가 떠났을 때 setInterval 재개
+    };
+
     return (
         <div className="overView">
             <div className="oVTop">
@@ -68,7 +71,7 @@ const OverView = () => {
                     <button className={indexNum===5?"menuBox menuBoxOn pWFlow":"menuBox"} onClick={()=>onGo(5)}>월별 발전량</button>
                 </div>
             </div>
-            <div className="oVCon" onMouseEnter={startStopInterval} onMouseLeave={startStartInterval}>
+            <div className="oVCon" onMouseEnter={mouseEnter} onMouseLeave={mouseLeave}>
                 {
                 indexNum===1?<GeneralCon/>:
                 indexNum===2?<PowerFlow/>:

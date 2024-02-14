@@ -1,10 +1,11 @@
 import React from 'react';
 import './Insolation.css';
 import { BarChart } from '@mui/x-charts/BarChart';
+import XAxisData from './XAxisData';
 
 const Insolation = () => {
+    const xData=XAxisData();
     
-    const xData03 = []
     const yData03 = [0]
     
     const valueFormatter = (value) => `${value} [단위]`;
@@ -13,7 +14,7 @@ const Insolation = () => {
         <div className="insolation">
         <BarChart
             margin={{right:200}}
-            xAxis={[{ scaleType: 'band', data: xData03, label: '(시)' }]}
+            xAxis={[{ scaleType: 'band', data: xData, label: '(시)' }]}
             series={[
                 { data: yData03,
                     label:'일사량', 

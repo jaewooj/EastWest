@@ -11,6 +11,7 @@ const hourDataTable = require('./hourDataTable');
 const dateTimeHourInput = require('./dateTimeHourInput');
 const hourDataInput = require('./hourDataInput');
 const arrayDataWebTm = require('./arrayDataWebTm');
+const dashDataWebTm = require('./dashDataWebTm');
 
 const runTasks = async () => {
     try {
@@ -75,6 +76,7 @@ const runTasks = async () => {
 
         await dbDataWebTm();
         await arrayDataWebTm();
+        await dashDataWebTm();
 
     } catch (error) {
         console.error('Error:', error)

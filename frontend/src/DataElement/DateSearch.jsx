@@ -12,9 +12,11 @@ const DateSearch = () => {
     const yesterday = new Date(today);
     yesterday.setDate(today.getDate()-1);
     yesterday.setHours(0, 0, 0, 0);
+    const tomorrow = new Date(today);
+    tomorrow.setDate(today.getDate() + 1);
     today.setHours(0,0,0,0);
-    const [startDate01, setStartDate01] = useState(yesterday);
-    const [startDate02, setStartDate02] = useState(today);
+    const [startDate01, setStartDate01] = useState(today);
+    const [startDate02, setStartDate02] = useState(tomorrow);
     const [minDate01, setMinDate01] = useState(new Date());
     const [searchResults,setSearchResults] = useState([]);
 

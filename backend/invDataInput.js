@@ -21,14 +21,14 @@ const invDataInput = async () =>{
         
         const updateInv01DataInputQuery = `
             UPDATE ${tableName} 
-            SET R001 = ?, R002 = ?, R003 = ? 
+            SET R001 = ?, R002 = ?, R003 = ?, R060 = ?
             WHERE date_time = ?
         `
         // console.log('쿼리문 객체 성공')
         const invData = await invData01();
         // console.log('랜덤데이터 가져오기 성공')
 
-        await connection.execute(updateInv01DataInputQuery,[invData[0],invData[1],invData[2],dateTime])
+        await connection.execute(updateInv01DataInputQuery,[invData[0],invData[1],invData[2],invData[3],dateTime])
         console.log(`invData success ${tableName}:${hour}:${minute}`)
 
     } catch(error){

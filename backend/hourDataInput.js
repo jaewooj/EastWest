@@ -18,12 +18,12 @@ const hourDataInput = async () => {
         
         const updateInv01DataInputQuery = `
             UPDATE ${tableName} 
-            SET R001 = ? 
+            SET R001 = ?, R060 = ?
             WHERE date_time = ?
         `
         const fourteenData01 = await fourteenData();
 
-        await connection.execute(updateInv01DataInputQuery,[fourteenData01,dateTime])
+        await connection.execute(updateInv01DataInputQuery,[fourteenData01.totalR001, fourteenData01.totalR060, dateTime])
         console.log(`fourteenData success ${tableName}:${hour}:${minute}`)
 
     } catch(error){

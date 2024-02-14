@@ -2,17 +2,17 @@ const mysql = require('mysql2/promise');
 const connectDatabase = require('./connectDb');
 
 
-const arrayDataWebTm = async () => {
+const dashDataWebTm = async () => {
     const connection = await connectDatabase();
     const express = require('express');
     const cors = require('cors');
     const app = express();
-    const port = 5021;
+    const port = 5031;
 
     app.use(express.json());
     app.use(cors());
 
-    app.get('/search/:tableName', async (req, res) => {
+    app.get('/gendata/:tableName', async (req, res) => {
         try {
             const { tableName } = req.params;
             const query = `
@@ -31,4 +31,4 @@ const arrayDataWebTm = async () => {
     });
 };
 
-module.exports=arrayDataWebTm;
+module.exports=dashDataWebTm;
