@@ -1,10 +1,44 @@
 import React from 'react';
 import './DayGr.css'
 import { BarChart } from '@mui/x-charts/BarChart';
+import { useState, useEffect } from 'react';
 
 const DayGr = () => {
+    
+    const [searchResults,setSearchResults] = useState([]);
 
-    const xData02 = ['01', '02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31',]
+    // 금월 일수를 가져오는 함수
+    const getCurrentMonthDays = () => {
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = now.getMonth() + 1;
+        // 해당 월의 첫째 날부터 시작하여 마지막 날을 구합니다.
+        const lastDay = new Date(year, month, 0).getDate();
+        // 해당 월의 일 수를 배열로 생성합니다.
+        const daysArray = Array.from({ length: lastDay }, (_, index) => (index + 1).toString().padStart(2,'0'));
+        return daysArray // 문자열로 변환하여 반환합니다.
+    };
+
+    useEffect(()=>{
+        const grDataCt = async () => {
+            try {
+                const now = new Date();
+                const year = now.getFullYear();
+                const month = now.getMonth() + 1;
+                const tableName = `DATA_${year}_${month}_month`;
+                const response = await axios.get(`http://localhost:5032/gendata/${tableName}`);
+                setSearchResults(response.data);
+                console.log(response.data)
+            } catch (error) {
+                console.error('발전량 가져오기 오류 : ', error);
+            }
+        }
+        grDataCt();
+
+    })
+
+
+    const xData02 = getCurrentMonthDays(); 
     const yData02 = [0]
 
     const valueFormatter = (value) => `${value} [kWh]`;

@@ -50,16 +50,6 @@ const ArrayGr = () => {
     
     
 
-    /* const test = () => {
-        const timeArray = timeFromDateTime(arrayGrData[10].date_time);
-        console.log(arrayGrData[0].date_time)
-        console.log(timeArray)
-        console.log(yData);
-    } */
-
-    // const xData03 = ['01', '02','03','04','05','06','07','08','09','10','11','12',]
-    // const yData03 = [38.1,0,0,0,0,0,0,0,0,0,0,0]
-
     const valueFormatter = (value) => `${value} [kWh]`;
     return (
         <div className="arrayGr">

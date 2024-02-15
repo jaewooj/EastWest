@@ -11,7 +11,8 @@ const hourDataTable = require('./hourDataTable');
 const dateTimeHourInput = require('./dateTimeHourInput');
 const hourDataInput = require('./hourDataInput');
 const arrayDataWebTm = require('./arrayDataWebTm');
-const dashDataWebTm = require('./dashDataWebTm');
+const dashTimeDataWebTm = require('./dashTimeDataWebTm');
+const dataMonthTable = require('./dataMonthTable');
 
 const runTasks = async () => {
     try {
@@ -32,6 +33,9 @@ const runTasks = async () => {
         // 가공 데이터 테이블 생성 - 최초 실행
         await hourDataTable();
 
+        // 월별 가공 데이터 테이블 생성 - 최초 실행
+        await dataMonthTable();
+
         // 매일 자정 데이터 수집 테이블 생성  
         cron.schedule('0 0 0 * * *', async()=>{
             // 데이터 정의 테이블 생성 - 매 자정
@@ -42,6 +46,8 @@ const runTasks = async () => {
             await dataCtTable();
             // 가공 데이터 테이블 생성 - 매 자정
             await hourDataTable();
+            // 월별 가공 데이터 테이블 생성 - 매 자정
+            await dataMonthTable();
         })
 
         // datetime 데이터 매분 입력
@@ -76,7 +82,7 @@ const runTasks = async () => {
 
         await dbDataWebTm();
         await arrayDataWebTm();
-        await dashDataWebTm();
+        await dashTimeDataWebTm();
 
     } catch (error) {
         console.error('Error:', error)

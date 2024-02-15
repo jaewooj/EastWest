@@ -36,6 +36,7 @@ const fourteenData = async () => {
         const [rows] = await connection.execute(sumDataQuery,[agoData,ctData]);
 
         if (rows && rows.length > 0) {
+            // 평균 기준
             const totalR001 = (rows[0].total_r001)/15;
             const totalR060 = (rows[0].total_r060) / 15;
             console.log('Total r001:', totalR001, agoData, ctData);

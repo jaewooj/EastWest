@@ -1,7 +1,7 @@
 import './Header.css'
 import Title from '../HeaderElement/Title';
 import InfoData from '../HeaderElement/InfoData';
-import TimeNtc from '../HeaderElement/timeNtc';
+import TimeNtc from '../HeaderElement/TimeNtc';
 
 const Header = () => {
     return (

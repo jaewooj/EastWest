@@ -3,10 +3,11 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import './DateSearch.css'
 import axios from 'axios'; 
-import { useDispatch } from 'react-redux';
-import { changeArrayItem } from '../store/modules/itemSlice';
+import { useSelector, useDispatch } from 'react-redux';
+import { changeArrayItem, changeIntegratedItem } from '../store/modules/itemSlice';
 
 const DateSearch = () => {
+    const selectedOption = useSelector(state => state.item.selectedOption);
     const dispatch = useDispatch();
     const today = new Date();
     const yesterday = new Date(today);
@@ -52,7 +53,15 @@ const DateSearch = () => {
     },[startDate02])
     
     const arrayDataInput = ()=> {
-        dispatch(changeArrayItem(searchResults));
+        if(selectedOption==='option1'){
+            dispatch(changeIntegratedItem(searchResults));
+        } else if(selectedOption==='option2'){
+            dispatch(changeArrayItem(searchResults));
+        } else if(selectedOption==='option3'){
+            
+        } else if(selectedOption==='option4'){
+
+        }
         /* console.log(`zz${searchResults}`) */
     }
 

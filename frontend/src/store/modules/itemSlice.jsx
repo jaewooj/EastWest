@@ -3,8 +3,11 @@ import {createSlice} from '@reduxjs/toolkit'
 const initialState = {
     selectedOption: 'option1',
     arrayData : [0],
+    integratedData : [0],
+    // 엑셀
     xData:[0],
     yDataExcel:[],
+    // 
     dashTimeGenData:[0],
 }
 
@@ -18,6 +21,9 @@ const itemSlice = createSlice({
         changeArrayItem(state,action){
             state.arrayData=action.payload
         },
+        changeIntegratedItem(state,action){
+            state.integratedData=action.payload
+        },
         setXData(state,action){
             state.xData = action.payload;
         },
@@ -29,5 +35,5 @@ const itemSlice = createSlice({
         },
     }
 })
-export const {changeItem,changeArrayItem,setXData,setYDataExcel,changeDashTimeItem} = itemSlice.actions
+export const {changeItem,changeArrayItem,changeIntegratedItem,setXData,setYDataExcel,changeDashTimeItem} = itemSlice.actions
 export default itemSlice.reducer

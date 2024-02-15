@@ -2,7 +2,7 @@ import React from 'react';
 import './GrCon.css'
 import { useState } from 'react';
 import ApexCharts from 'apexcharts'
-import RealGr from '../GrElement/realGr';
+import RealGr from '../GrElement/RealGr';
 import RealTm from '../GrElement/RealTm';
 import DayGr from '../GrElement/DayGr';
 import MonGr from '../GrElement/MonGr';

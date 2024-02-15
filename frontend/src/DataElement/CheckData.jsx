@@ -2,6 +2,7 @@ import React from 'react';
 import './CheckData.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { changeItem } from '../store/modules/itemSlice';
+import { changeArrayItem, changeIntegratedItem } from '../store/modules/itemSlice';
 
 const CheckData = () => {
     const selectedOption = useSelector(state => state.item.selectedOption); // Redux 스토어의 selectedOption 값을 가져옵니다.
@@ -9,6 +10,14 @@ const CheckData = () => {
 
     const handleOptionChange = (event) => {
         dispatch(changeItem(event.target.value));
+        if(selectedOption==='option1'){
+
+            dispatch(changeArrayItem([0]));
+
+        } else if(selectedOption==='option2'){
+            dispatch(changeIntegratedItem([0]));
+            
+        }
     };
     
     return (

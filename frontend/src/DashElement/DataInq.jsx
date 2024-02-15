@@ -1,7 +1,7 @@
 import React from 'react';
 import './DataInq.css';
 import CheckData from '../DataElement/CheckData';
-import DataInqSearch from '../DataElement/dataInqSearch';
+import DataInqSearch from '../DataElement/DataInqSearch';
 import SearchResult from '../DataElement/SearchResult';
 
 const DataInq = () => {
