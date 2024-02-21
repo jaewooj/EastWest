@@ -23,7 +23,7 @@ const TimeGr = () => {
                 const tableName = `DATA_${year}_${month}_${day}_hour`;
                 const response = await axios.get(`http://localhost:5031/gendata/${tableName}`);
                 setSearchResults(response.data);
-                console.log(response.data)
+                // console.log(response.data)
             } catch (error) {
                 console.error('발전량 가져오기 오류 : ', error);
             }
@@ -35,7 +35,7 @@ const TimeGr = () => {
     useEffect(() => {
         
         let timeGenData = searchResults;
-        console.log(timeGenData)
+        // console.log(timeGenData)
         const timeFromDateTime = (dateTimeString) => {
             if (!dateTimeString) return ''; // dateTimeString이 없으면 빈 문자열 반환
             // 'YYYY-MM-DD HH:mm:ss' 형식의 문자열에서 시간 부분을 추출합니다.
@@ -61,22 +61,22 @@ const TimeGr = () => {
             });
             return newYData;
         };
-        console.log(getYData());
+        // console.log(getYData());
         // 데이터 합산
         if (getYData() && getYData().length > 0) {
     
             const avgByhour = [];
             for (let i = 1; i < getYData().length; i += 4) {
-                const sum = getYData().slice(i, i + 3).reduce((a, b) => a + b, 0);
+                const sum = getYData().slice(i, i + 4).reduce((a, b) => a + b, 0);
                 
-                console.log(sum)
+                // console.log(sum)
                 const avg = sum/4;
-                console.log(avg)
-                avgByhour.push(avg);
+                // console.log(avg)
+                avgByhour.push(avg.toFixed(2));
             }
             if(avgByhour.length!==0){
                 setYData01(avgByhour);
-                console.log(avgByhour);
+                // console.log(avgByhour);
             }
         }
     }, [searchResults]); // 여기서 의존성 배열에 searchResults를 추가합니다.
@@ -92,7 +92,8 @@ const TimeGr = () => {
                         label:'시간당 발전량', 
                         color:'#4e79a7', valueFormatter} // 1
                 ]}
-                yAxis={[{label:'발전량(kWh)'}]}
+                yAxis={[{label:'발전량(kWh)', labelStyle:{transform:`translateX(-220px) translateY(140px) rotate(-90deg)`}}]}
+                margin={{left:80}}
             />
         </div>
     );

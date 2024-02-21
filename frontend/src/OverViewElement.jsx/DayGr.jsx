@@ -2,10 +2,11 @@ import React from 'react';
 import './DayGr.css'
 import { BarChart } from '@mui/x-charts/BarChart';
 import { useState, useEffect } from 'react';
+import axios from 'axios'; 
 
 const DayGr = () => {
     
-    const [searchResults,setSearchResults] = useState([]);
+    const [yData01, setYData01] = useState([0]);
 
     // 금월 일수를 가져오는 함수
     const getCurrentMonthDays = () => {
@@ -27,19 +28,21 @@ const DayGr = () => {
                 const month = now.getMonth() + 1;
                 const tableName = `DATA_${year}_${month}_month`;
                 const response = await axios.get(`http://localhost:5032/gendata/${tableName}`);
-                setSearchResults(response.data);
-                console.log(response.data)
+                // console.log(response.data)
+                const newYData = response.data.map(item=>{
+                    return parseFloat(item.R060)
+                })
+                setYData01(newYData)
+                // console.log(newYData);
             } catch (error) {
                 console.error('발전량 가져오기 오류 : ', error);
             }
         }
         grDataCt();
-
-    })
+    },[])
 
 
     const xData02 = getCurrentMonthDays(); 
-    const yData02 = [0]
 
     const valueFormatter = (value) => `${value} [kWh]`;
     return (
@@ -47,11 +50,12 @@ const DayGr = () => {
             <BarChart
                 xAxis={[{ scaleType: 'band', data: xData02, label: '(일)' }]}
                 series={[
-                    { data: yData02,
+                    { data: yData01,
                         label:'일간 발전량', 
                     color:'#a3bcf1bd', valueFormatter} // 1
                 ]}
-                yAxis={[{label:'발전량(kWh)'}]}
+                yAxis={[{label:'발전량(kWh)', labelStyle:{transform:`translateX(-220px) translateY(140px) rotate(-90deg)`}}]}
+                margin={{left:80}}
             />
         </div>
     );

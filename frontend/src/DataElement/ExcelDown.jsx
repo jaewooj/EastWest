@@ -6,12 +6,28 @@ import * as XLSX from "xlsx";
 const ExcelDown = () => {
   const xData = useSelector(state => state.item.xData);
   const yData = useSelector(state => state.item.yDataExcel);
+  const yTotalData = useSelector(state => state.item.totalDataExcel);
 
     const downloadExcel = () => {
-      const dataToExport = xData.map((time, index) => ({
+      const dataToExport = xData.map((time, index) => {
+        const newData = { time };
+      
+        for (const key in yTotalData) {
+          if (Object.hasOwnProperty.call(yTotalData, key)) {
+            newData[key] = yTotalData[key][index];
+          }
+        }
+      
+        return newData;
+      }
+      /* ({
         time,
-        value: yData[index]
-      }));
+        // value: yData[index]
+      [Object.keys(yTotalData)[0]]: yTotalData[Object.keys(yTotalData)[0]][index],
+      [Object.keys(yTotalData)[1]]: yTotalData[Object.keys(yTotalData)[1]][index],
+      }) */
+      );
+      console.log(yTotalData);
         const now = new Date();
         const year = now.getFullYear();
         const month = String(now.getMonth() + 1).padStart(2, '0');

@@ -13,6 +13,15 @@ const hourDataInput = require('./hourDataInput');
 const arrayDataWebTm = require('./arrayDataWebTm');
 const dashTimeDataWebTm = require('./dashTimeDataWebTm');
 const dataMonthTable = require('./dataMonthTable');
+const dateDayInput = require('./dateDayInput');
+const dayDataInput = require('./dayDataInput');
+const dashDayDataWebTm = require('./dashDayDataWebTm');
+const dataYearTable = require('./dataYearTable');
+const monthDataInput = require('./monthDataInput');
+const dashMonthDataWebTm = require('./dashMonthDataWebTm');
+const grDataWebTm = require('./grDataWebTm');
+const dataAccumTable = require('./dataAccumTable');
+const yearDataInput = require('./yearDataInput');
 
 const runTasks = async () => {
     try {
@@ -33,8 +42,25 @@ const runTasks = async () => {
         // 가공 데이터 테이블 생성 - 최초 실행
         await hourDataTable();
 
-        // 월별 가공 데이터 테이블 생성 - 최초 실행
+        // 일별 가공 데이터 테이블 생성 - 최초 실행
         await dataMonthTable();
+        // 일별 일수 데이터 입력 - 최초 실행
+        await dateDayInput();
+        // 일별 발전량 데이터 삽입 - 최초 실행
+        await dayDataInput();
+
+        // 월별 가공 데이터 테이블 생성 - 최초 실행
+        await dataYearTable();
+        
+        // 누적 가공 데이터 테이블 생성 - 최초 실행
+        await dataAccumTable();
+
+        // 월별 발전량 데이터 삽입 - 최초 실행
+        await monthDataInput();
+
+        // 년도별 발전량 데이터 삽입 - 최초 실행
+        await yearDataInput();
+
 
         // 매일 자정 데이터 수집 테이블 생성  
         cron.schedule('0 0 0 * * *', async()=>{
@@ -46,8 +72,6 @@ const runTasks = async () => {
             await dataCtTable();
             // 가공 데이터 테이블 생성 - 매 자정
             await hourDataTable();
-            // 월별 가공 데이터 테이블 생성 - 매 자정
-            await dataMonthTable();
         })
 
         // datetime 데이터 매분 입력
@@ -79,10 +103,42 @@ const runTasks = async () => {
                 console.log('매 15분 입력 성공');
             }
         })
+        // 매월 첫째날 실행
+        cron.schedule('0 0 0 1 * *', async()=>{
+            // 월별 가공 데이터 테이블 생성
+            await dataMonthTable();
+            // 월별 일수 데이터 입력
+            await dateDayInput();
+        })
 
+        // 매년 첫째날 실행
+        cron.schedule('0 0 0 1 1 *', async()=>{
+            // 월별 가공 데이터 테이블 생성
+            await dataYearTable();
+            // 누적 가공 데이터 테이블 생성
+            await dataAccumTable();
+
+        })
+
+        // 매일 매시간마다 실행
+        cron.schedule('0 0 * * * *', async()=>{
+            // 일별 발전량 데이터 삽입
+            await dayDataInput();
+            
+            // 월별 발전량 데이터 삽입
+            await monthDataInput();
+            
+            // 년도별 발전량 데이터 삽입
+            await yearDataInput();
+        })
+
+        // 웹서버에 데이터 전송
         await dbDataWebTm();
         await arrayDataWebTm();
         await dashTimeDataWebTm();
+        await dashDayDataWebTm();
+        await dashMonthDataWebTm();
+        await grDataWebTm();
 
     } catch (error) {
         console.error('Error:', error)

@@ -63,7 +63,6 @@ const InvCon = () => {
                             </table>
                         </div>
                     </div>
-                    
                 </div>
                 <div className="invEa inv02">
                     <div className="invPic">

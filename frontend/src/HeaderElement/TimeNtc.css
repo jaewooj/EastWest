@@ -109,7 +109,7 @@
 }
 .timeNtc .popupNtc .popupTable {
     width: 100%;
-    height: 100%;
+    height: 80%;
     padding: 30px 40px 20px 40px;
     box-sizing: border-box;
 }
@@ -133,9 +133,8 @@
     /* width: 20%; */
 }
 .timeNtc .popupNtc .popupTable table td {
-    width: auto;
-    height: 50px;
-    line-height: 50px;
+    height: 48px;
+    line-height: 48px;
 }
 .timeNtc .popupNtc .popupTable table td {
     /* height: 20px; */
@@ -147,6 +146,18 @@
     border-right: 0px solid #000;
     border-left: 0px solid #000;
 }
+.timeNtc .popupNtc .popupTable table tr td:nth-child(1) {
+    width: 10%;
+}
+.timeNtc .popupNtc .popupTable table tr td:nth-child(2) {
+    width: auto;
+}
+.timeNtc .popupNtc .popupTable table tr td:nth-child(3) {
+    width: 12%;
+}
+.timeNtc .popupNtc .popupTable table tr td:nth-child(4) {
+    width: 22%;
+}
 .moreBg {
     position: fixed;
     left: 0;
@@ -156,4 +167,32 @@
     background: #616161;
     opacity: 0.3;
     z-index: 10000;
+}
+.timeNtc .popupNtc .pagination {
+    width: auto;
+    height: 30px;
+    font-size: 16px;
+    margin: auto;
+    text-align: center;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    margin-top: -10px;
+}
+.timeNtc .popupNtc .pagination button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    line-height: 30px;
+    box-sizing: border-box;
+    margin-right: 15px;
+    margin-left: -10px;
+    font-size: 16px;
+}
+.timeNtc .popupNtc .pagination .boldButton {
+    font-weight: 700;
+    text-shadow: 1px 1px 1px #a8a8a8;
+    margin-top: -1px;
+
 }

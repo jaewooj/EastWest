@@ -61,7 +61,7 @@
     overflow: auto;
 }
 .invCon .invDt .invEa {
-    border: 2px solid #ffffff;
+    border: 2px solid #e4e4e4;
     border-radius: 15px;
     padding-left: 10px;
     padding-right: 10px;
@@ -88,11 +88,10 @@
     font-size: 10px;
     padding-left: 5px;
     width: 84%;
-
 }
 .invCon .invDt .invEa .invEaTt p {
     font-size: 14px;
-    font-weight: 600;
+    font-weight: bold;
     height: 25%;
     cursor: pointer;
     margin-left: 5px;
@@ -115,7 +114,8 @@
 .invCon .invDt .invEa .invEaTt .detail table tr:first-child {
     /* background: #5974ef; */
     background: #7a96d1;
-    color: #ffffff;
+    color: #eaffe0;
+    /* color: #d3ffbb; */
     font-weight: 600;
 }
 .invCon .invDt .invEa .invEaTt .detail table tr:last-child {

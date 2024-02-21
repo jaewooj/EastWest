@@ -4,9 +4,44 @@ import { useState } from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-const DayGr = () => {
+const DayGr = ({dayGr,prevDayGr}) => {
 
-    const value = 341.8;
+    const maxValue = 200;
+
+    function CustomTextProgressbar(props) {
+        const { children, ...otherProps } = props;
+      
+        return (
+          <div
+            style={{
+              position: 'relative',
+              width: '100%',
+              height: '100%',
+            }}
+          >
+            <div style={{ position: 'absolute' }}>
+              <CircularProgressbar {...otherProps} />
+            </div>
+            <div
+              style={{
+                position: 'absolute',
+                height: '100%',
+                width: '100%',
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+                fontSize:'16px',
+                lineHeight:'1.3',
+                color:'#4277FF',
+                marginTop:'2px'
+              }}
+            >
+              {props.children}
+            </div>
+          </div>
+        );
+      }
 
     return (
         <div className="dayGr">
@@ -15,22 +50,26 @@ const DayGr = () => {
                 <p>금일 발전량</p>
             </div>
             <div className="radialGp">
-                <CircularProgressbar 
-                    value={value} 
-                    maxValue={500} 
-                    text={`${value}h`} 
+                
+            <CustomTextProgressbar 
+                    value={dayGr} 
+                    maxValue={maxValue} 
                     styles={buildStyles({
                         // Colors
                         pathColor: `#71DAA9`,
-                        textColor: '#4277FF',
                         trailColor: '#d0d0d0',
                     })}
-                />
+                    >
+                    <div >
+                        <strong>{dayGr}</strong>
+                    </div>
+                    <div style={{ fontSize: '0.8em' }}>KWh</div>
+                </CustomTextProgressbar>
             </div>
             <div className="grEff">
                 <ul>
                     <li>전일 발전량</li>
-                    <li>476.6<span>kWh</span>
+                    <li>{prevDayGr}<span>kWh</span>
                     </li>
                 </ul>
             </div>

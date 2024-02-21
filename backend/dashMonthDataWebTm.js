@@ -7,7 +7,7 @@ const dashMonthDataWebTm = async () => {
     const express = require('express');
     const cors = require('cors');
     const app = express();
-    const port = 5032;
+    const port = 5033;
 
     app.use(express.json());
     app.use(cors());
@@ -16,7 +16,7 @@ const dashMonthDataWebTm = async () => {
         try {
             const { tableName } = req.params;
             const query = `
-                SELECT time_nm, date_time, R001, R060 FROM ${tableName};
+                SELECT R060 FROM ${tableName};
             `;
             const [results] = await connection.query(query);
             res.json(results);

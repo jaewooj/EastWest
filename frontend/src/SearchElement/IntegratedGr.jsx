@@ -4,7 +4,7 @@ import { BarChart } from '@mui/x-charts/BarChart';
 import { useSelector, useDispatch} from 'react-redux';
 import { useState, useEffect } from 'react';
 import XAxisData from './XAxisData';
-import { setXData, setYDataExcel } from '../store/modules/itemSlice';
+import { setTotalDataExcel, setXData, setYDataExcel } from '../store/modules/itemSlice';
 
 const IntegratedGr = () => {
     
@@ -47,7 +47,8 @@ const IntegratedGr = () => {
         setYData(getYData());
         // 엑셀 
         dispatch(setXData(xData));
-        dispatch(setYDataExcel(getYData()));
+        // dispatch(setYDataExcel(getYData()));
+        dispatch(setTotalDataExcel({total:getYData()}));
     }, [integratedGrData]);
 
 

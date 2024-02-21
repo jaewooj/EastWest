@@ -2,7 +2,7 @@ const mysql = require('mysql2/promise');
 const connectDatabase = require('./connectDb')
 
 const dataMonthTable = async () => {
-    const now = nowTime();
+    const now = new Date();
     const year = now.getFullYear();
     const month = now.getMonth()+1;
     const tableName = `DATA_${year}_${month}_month`;
@@ -72,7 +72,7 @@ const dataMonthTable = async () => {
             R050 DECIMAL (5, 2), 
             R051 DECIMAL (5, 2), 
             -- 인버터 전체
-            R060 DECIMAL (5,2),
+            R060 DECIMAL (8,2),
             R061 DECIMAL (5,2),
             R062 DECIMAL (5,2),
             -- 환경센서

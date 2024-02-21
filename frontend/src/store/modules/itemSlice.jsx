@@ -7,6 +7,8 @@ const initialState = {
     // 엑셀
     xData:[0],
     yDataExcel:[],
+    // 엑셀 종합
+    totalDataExcel : [],
     // 
     dashTimeGenData:[0],
 }
@@ -30,10 +32,13 @@ const itemSlice = createSlice({
         setYDataExcel(state,action){
             state.yDataExcel = action.payload;
         },
+        setTotalDataExcel(state,action){
+            state.totalDataExcel = action.payload;
+        },
         changeDashTimeItem(state,action){
             state.dashTimeGenData=action.payload
         },
     }
 })
-export const {changeItem,changeArrayItem,changeIntegratedItem,setXData,setYDataExcel,changeDashTimeItem} = itemSlice.actions
+export const {changeItem,changeArrayItem,changeIntegratedItem,setXData,setYDataExcel,setTotalDataExcel,changeDashTimeItem} = itemSlice.actions
 export default itemSlice.reducer

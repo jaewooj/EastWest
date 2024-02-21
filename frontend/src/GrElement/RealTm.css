@@ -38,6 +38,7 @@
     height: 50%;
     margin: auto;
     display: block;
+    margin-bottom: 3px;
 }
 .realTm .grEff {
     text-align: center;

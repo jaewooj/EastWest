@@ -17,6 +17,10 @@ const CheckData = () => {
         } else if(selectedOption==='option2'){
             dispatch(changeIntegratedItem([0]));
             
+        } else if(selectedOption==='option3'){
+            
+        } else if(selectedOption==='option4'){
+            
         }
     };
     

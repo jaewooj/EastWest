@@ -2,8 +2,13 @@ import React from 'react';
 import './TimeNtc.css'
 import { useEffect,useState } from 'react';
 import { IoMdClose } from "react-icons/io";
+import NtcItem from './NtcItem';
 
 const TimeNtc = () => {
+
+    const ITEMS_PER_PAGE = 6; // 한 페이지에 보여줄 아이템 개수
+    const [currentPage, setCurrentPage] = useState(1);
+    const [isClicked, setIsClicked] = useState(1);
 
     const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -31,7 +36,107 @@ const TimeNtc = () => {
     }
     const popupOff = () => {
         setPopup(false);
+        setCurrentPage(1);
     }
+    const data = [
+        {
+            no:1,
+            title:'모듈 어레이 온도 이상',
+            writer:'관리자',
+            time:'2024-01-02',
+        },
+        {
+            no:2,
+            title:'모듈 어레이 온도 이상',
+            writer:'관리자',
+            time:'2024-01-16',
+        },
+        {
+            no:3,
+            title:'모듈 어레이 온도 이상',
+            writer:'관리자',
+            time:'2024-01-17',
+        },
+        {
+            no:4,
+            title:'모듈 어레이 1-2 온도 이상',
+            writer:'관리자',
+            time:'2024-01-18',
+        },
+        {
+            no:5,
+            title:'모듈 어레이 2-2 온도 이상',
+            writer:'관리자',
+            time:'2024-01-19',
+        },
+        {
+            no:6,
+            title:'모듈 어레이 온도 이상',
+            writer:'관리자',
+            time:'2024-01-20',
+        },
+        {
+            no:7,
+            title:'모듈 어레이 온도 이상',
+            writer:'관리자',
+            time:'2024-01-21',
+        },
+        {
+            no:8,
+            title:'모듈 어레이 온도 이상',
+            writer:'관리자',
+            time:'2024-02-21',
+        },
+        {
+            no:9,
+            title:'모듈 어레이 온도 이상',
+            writer:'관리자',
+            time:'2024-02-21',
+        },
+        /* {
+            no:10,
+            title:'모듈 어레이 온도 이상',
+            writer:'관리자',
+            time:'2024-02-21',
+        },
+        {
+            no:11,
+            title:'모듈 어레이 온도 이상',
+            writer:'관리자',
+            time:'2024-02-21',
+        },
+        {
+            no:12,
+            title:'모듈 어레이 온도 이상',
+            writer:'관리자',
+            time:'2024-02-21',
+        },
+        {
+            no:13,
+            title:'모듈 어레이 온도 이상',
+            writer:'관리자',
+            time:'2024-02-21',
+        },
+        {
+            no:14,
+            title:'모듈 어레이 온도 이상',
+            writer:'관리자',
+            time:'2024-02-21',
+        }, */
+    ]
+    const reverseData = data.reverse();
+    const [currentData, setCurrentData] = useState([]);
+    useEffect(() => {
+        setCurrentData(reverseData.slice((currentPage - 1) * ITEMS_PER_PAGE, currentPage * ITEMS_PER_PAGE));
+    }, [currentPage]);
+
+    const totalPages = Math.ceil(reverseData.length / ITEMS_PER_PAGE);
+
+    // 페이지 이동 함수
+    const goToPage = (page) => {
+        setCurrentPage(page);
+        setIsClicked(page);
+    };
 
     return (
         <div className="timeNtc">
@@ -79,7 +184,10 @@ const TimeNtc = () => {
                                     <td>&nbsp;글쓴이&nbsp;</td>
                                     <td>작성시간</td>
                                 </tr>
-                                <tr>
+                                {
+                                    currentData.map(item=><NtcItem key={item.no} item={item}/>)
+                                }
+                                {/* <tr>
                                     <td>2</td>
                                     <td>모듈 어레이 온도 이상</td>
                                     <td>관리자</td>
@@ -90,11 +198,20 @@ const TimeNtc = () => {
                                     <td>개발 테스트 중</td>
                                     <td>관리자</td>
                                     <td>2024-01-02</td>
-                                </tr>
+                                </tr> */}
                             </tbody>
                         </table>
                     </div>
                     
+                    {/* 페이지네이션 컨트롤러 */}
+                    <div className="pagination">
+                        {Array.from({ length: totalPages }, (_, index) => (
+                            <button className={isClicked === index + 1 ? 'boldButton' : ''} key={index + 1} onClick={() => goToPage(index + 1)}>
+                                {index + 1}
+                            </button>
+                        ))}
+                    </div>
+                            
                 </div>
             )}
         </div>

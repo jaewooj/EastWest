@@ -11,62 +11,61 @@ const InfoData = () => {
 
     const fetchData = async () => {
         try {
-            const response = await fetch('http://localhost:5020/test'); // 서버의 엔드포인트에 맞게 수정
-            const data = await response.json();
-            setDbData(data.dbData[0].R100);
+            const response = await axios.get('http://localhost:5020/test'); // 서버의 엔드포인트에 맞게 수정
+            const weatherData = response.data[0].R100;
+            setDbData(response.data[0].R100);
+            updateWeatherInfo(weatherData);
         } catch (error) {
             console.error('데이터 가져오기 실패:', error);
         }
     };
 
-    const updateWeatherInfo = () => {
+    const updateWeatherInfo = (dbData) => {
         const now = new Date();
         const hour = now.getHours();
+        let newWeather = '';
+        let newWeatherImg = '';
 
         if (dbData >= 9 && dbData <= 10) {
-            setWeather("흐림");
-            setWeatherImg("/images/cloudy.png");
+            newWeather = "흐림";
+            newWeatherImg = "/images/cloudy.png";
         } else if (dbData >= 6 && dbData <= 8) {
-            setWeather("구름많음");
+            newWeather = "구름많음";
             if (hour >= 6 && hour <= 17) {
-                setWeatherImg("/images/cloudmuch.png");
-            } else if (hour <= 5 || hour >= 18) {
-                setWeatherImg("/images/cloudmuchnight.png");
+                newWeatherImg = "/images/cloudmuch.png";
+            } else {
+                newWeatherImg = "/images/cloudmuchnight.png";
             }
         } else if (dbData >= 3 && dbData <= 5) {
-            setWeather("구름조금");
+            newWeather = "구름조금";
             if (hour >= 6 && hour <= 17) {
-                setWeatherImg("/images/cloudlittle.png");
-            } else if (hour <= 5 || hour >= 18) {
-                setWeatherImg("/images/cloudlittlenight.png");
+                newWeatherImg = "/images/cloudlittle.png";
+            } else {
+                newWeatherImg = "/images/cloudlittlenight.png";
             }
         } else if (dbData >= 0 && dbData <= 2) {
-            setWeather("맑음");
+            newWeather = "맑음";
             if (hour >= 6 && hour <= 17) {
-                setWeatherImg("/images/sunny.png");
-            } else if (hour <= 5 || hour >= 18) {
-                setWeatherImg("/images/cleannight.png");
+                newWeatherImg = "/images/sunny.png";
+            } else {
+                newWeatherImg = "/images/cleannight.png";
             }
         }
-        
-        // console.log(hour);
-        // console.log(dbData);
-        // console.log(weather);
-        // console.log(weatherImg);
+
+        setWeather(newWeather);
+        setWeatherImg(newWeatherImg);
     };
     
     useEffect(() => {
         // 초기 실행
         fetchData();
-        updateWeatherInfo();
+        // console.log(dbData);
 
-        // 300초(5분)마다 실행
         const intervalId = setInterval(() => {
             fetchData();
-            updateWeatherInfo();
-        }, 300000);
+            // 300초 마다 실행
+        }, 1800000);
 
-        // 컴포넌트가 언마운트될 때 interval 정리
         return () => clearInterval(intervalId);
     }, []);  // 빈 종속성 배열로 초기 실행을 보장
 
@@ -105,7 +104,7 @@ const InfoData = () => {
                             <p>&nbsp;W/m<sup>2</sup></p>
                         </li>
                         <li>
-                            <p>수평 일사량&nbsp;:&nbsp;</p>
+                            <p>수직 일사량&nbsp;:&nbsp;</p>
                             <p>710.8</p>
                             <p>&nbsp;W/m<sup>2</sup></p>
                         </li>

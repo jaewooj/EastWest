@@ -19,7 +19,7 @@ const dateDayInput = async () => {
         for (let day = 1; day <= lastDay; day++) {
             const day_nm = day.toString().padStart(2, '0'); // 날짜를 두 자리로 포맷팅
             const insertQuery = `
-                INSERT INTO ${tableName} (day_nm) 
+                INSERT IGNORE INTO ${tableName} (day_nm) 
                 VALUES ('${day_nm}');
             `;
             await connection.execute(insertQuery);

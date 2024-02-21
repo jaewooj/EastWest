@@ -13,12 +13,12 @@ import { index } from 'd3';
 
 const OverView = () => {
 
-    const [indexNum,setIndexNum] = useState(1);
+    const [indexNum,setIndexNum] = useState(2);
     const [startStat,setStartStat] = useState();
     const [intervalId,setIntervalId] = useState(1);
 
     useEffect(()=>{
-      startInterval();
+      // startInterval();
       return () => {
         clearInterval(startStat);
       };
@@ -50,10 +50,12 @@ const OverView = () => {
     
     const mouseEnter = () => {
       stopInterval(); // 마우스가 올라갔을 때 setInterval 중지
+      // console.log('stop');
     };
 
     const mouseLeave = () => {
       startInterval(); // 마우스가 떠났을 때 setInterval 재개
+      // console.log('start');
     };
 
     return (
