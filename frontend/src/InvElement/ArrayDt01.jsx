@@ -1,22 +1,56 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import './ArrayDt01.css'
+import axios from 'axios';
 
-const ArrayDt01 = () => {
-    const value = 4.2;
+const ArrayDt01 = ({invTitle,rtData}) => {
+    
+    const [grData,setGrData] = useState(0);
+    const [vtData,setVtData] = useState(0);
+    const [ctData,setCtData] = useState(0);
+    const [arrayTitle,setArrayTitle] = useState('');
+    useEffect(()=>{
+        if(invTitle==='인버터 1'){
+            setArrayTitle('1');
+            setGrData(rtData.R001);
+            setVtData(rtData.R002);
+            setCtData(rtData.R003);
+            // console.log(invTitle);
+        } else if(invTitle==='인버터 2'){
+            setArrayTitle('2');
+            setGrData(rtData.R010);
+            setVtData(rtData.R011);
+            setCtData(rtData.R012);
+        } else if(invTitle==='인버터 3'){
+            setArrayTitle('3');
+            setGrData(rtData.R020);
+            setVtData(rtData.R021);
+            setCtData(rtData.R022);
+
+        } else if(invTitle==='인버터 4'){
+            setArrayTitle('4');
+            setGrData(rtData.R040);
+            setVtData(rtData.R041);
+            setCtData(rtData.R042);
+
+        }
+
+    }, []);
+
+    const maxVlue = 3.3;
     return (
         <div className="arrayConDt">
             <div className="arrayTtGp">
                 <div className="arrayTt gradientText">
                     <p className="mark"></p>
-                    <p>ARRAY 1-1</p>
+                    <p>ARRAY {arrayTitle}-1</p>
                 </div>
                 <div className="arrRadialGp">
                     <CircularProgressbar 
-                        value={value} 
-                        maxValue={4.95} 
-                        text={`${value}kW`} 
+                        value={grData} 
+                        maxValue={maxVlue} 
+                        text={`${grData}kW`} 
                         styles={buildStyles({
                             // Colors
                             pathColor: `#5486A0`,
@@ -39,9 +73,9 @@ const ArrayDt01 = () => {
                         </tr>
                         <tr>
                             <td>15EA</td>
-                            <td>412V</td>
-                            <td>159.4A</td>
-                            <td>57.7kW</td>
+                            <td>{vtData}V</td>
+                            <td>{ctData}A</td>
+                            <td>{grData}kW</td>
                             <td>123kWh</td>
                             <td>35,585KWh</td>
                         </tr>

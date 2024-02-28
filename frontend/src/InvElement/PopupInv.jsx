@@ -7,7 +7,7 @@ import ArrayDt01 from './ArrayDt01';
 import ArrayDt02 from './ArrayDt02';
 import ArrayDt03 from './ArrayDt03';
 
-const PopupInv = ({popupOff, invTitle}) => {
+const PopupInv = ({popupOff, invTitle,rtData}) => {
     return (
         <div className="popupInv">
             <div class="popupHeader">
@@ -15,9 +15,9 @@ const PopupInv = ({popupOff, invTitle}) => {
                 <button onClick={()=>popupOff()}><IoMdClose /></button>
             </div>
             <div class="invSelect">
-                <ArrayDt01/>
-                <ArrayDt02/>
-                <ArrayDt03/>
+                <ArrayDt01 rtData={rtData} invTitle={invTitle}/>
+                <ArrayDt02 rtData={rtData} invTitle={invTitle}/>
+                {/* <ArrayDt03 rtData={rtData}/> */}
             </div>
             
         </div>

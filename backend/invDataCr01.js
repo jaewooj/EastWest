@@ -30,13 +30,18 @@ const invDataCr01 = async () => {
         const r006Max = 10.28;
         const r006 = Math.random()*(r006Max-r006Min)+r006Min;
 
+        const r007 = r001+r004;
+        const r008 = (r002+r005)/2;
+        const r009 = r003+r006;
+
+
         const r060Min = 47.0;
         const r060Max = 49.9;
         const r060 = Math.random()*(r060Max-r060Min)+r060Min;
 
         // return {r001,r002,r003}; 객체로 반환
         // console.log('랜덤데이터 생성은 완료')
-        return [r001,r002,r003, r004, r005, r006, r060] // 배열로 반환 
+        return [r001,r002,r003, r004, r005, r006, r007, r008, r009, r060] // 배열로 반환 
     } catch(error){
         console.error(`Error ocuurred:`, error);
         console.log(error);

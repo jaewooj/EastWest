@@ -23,8 +23,8 @@ const dashDayDataWebTm = async () => {
         } catch (error) {
             console.error('데이터 가져오기 실패:', error);
             res.status(500).json({ error: 'Internal Server Error' });
-        }
-    });
+        } 
+    }); 
 
     app.listen(port, () => {
         console.log(`서버가 http://localhost:${port} 에서 실행 중입니다.`);

@@ -27,7 +27,7 @@ const GrCon = () => {
         const realTimeGrCt = async () => {
             try {
                 // RealGr
-                const response = await axios.get(`http://localhost:5020/test`)
+                const response = await axios.get(`http://localhost:5020/realtimeData`)
                 setRealTimeGr(response.data[0].R060) // 검색결과를 상태에 저장
 
                 // RealTm
@@ -38,7 +38,8 @@ const GrCon = () => {
                 const tableName = `DATA_${year}_${month}_${day}`;
                 const response1 = await axios.get(`http://localhost:5041/grOverview/${tableName}`)
                 // console.log(response1.data[0].columns_count);
-                const timeResults = (response1.data.results[0].columns_count/60).toFixed(1);
+                // const timeResults = (response1.data.results[0].columns_count/60).toFixed(1);
+                const timeResults = (Number(response1.data.results/60)).toFixed(1);
                 setRealTimeGrTime(timeResults);
                 // console.log(response1.data[0].columns_count);
                 // console.log(timeResults)
@@ -49,18 +50,19 @@ const GrCon = () => {
                 const prevTableName = `DATA_${year}_${month}_${prevDay}`;
                 const response2 = await axios.get(`http://localhost:5041/grOverview/${prevTableName}`)
                 // console.log(response2.data[0].columns_count);
-                const prevTimeResults = (response2.data.results[0].columns_count/60).toFixed(1);
+                // const prevTimeResults = (response2.data.results[0].columns_count/60).toFixed(1);
+                const prevTimeResults = (Number(response2.data.results/60)).toFixed(1);
                 // console.log(prevTimeResults);
                 setPrevRealTimeGrTime(prevTimeResults);
 
                 // DayGr
 
                 // console.log(response1.data.grResults[0].sum_r060);
-                const dayGrResults = ((response1.data.grResults[0].sum_r060/60).toFixed(2));
+                const dayGrResults = ((response1.data.grResults/60).toFixed(2));
                 setDayGr(dayGrResults);
 
                 // console.log(response2.data.grResults[0].sum_r060/60);
-                const prevDayGrResults = ((response2.data.grResults[0].sum_r060/60).toFixed(2));
+                const prevDayGrResults = ((response2.data.grResults/60).toFixed(2));
                 setPrevDayGr(prevDayGrResults);
                 
                 // MonGr

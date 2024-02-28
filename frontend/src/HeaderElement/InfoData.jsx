@@ -11,7 +11,7 @@ const InfoData = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get('http://localhost:5020/test'); // 서버의 엔드포인트에 맞게 수정
+            const response = await axios.get('http://localhost:5020/realtimeData'); // 서버의 엔드포인트에 맞게 수정
             const weatherData = response.data[0].R100;
             setDbData(response.data[0].R100);
             updateWeatherInfo(weatherData);

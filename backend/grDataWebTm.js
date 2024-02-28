@@ -28,13 +28,22 @@ const grDataWebTm = async () => {
                 const query = `
                     SELECT COUNT(*) AS columns_count FROM ${tableName} WHERE R060 !=0;
                 `;
-                const [results] = await connection.query(query);
+                let results = 0;
+                const [resultRows] = await connection.query(query);
+                if (resultRows.length>0&&resultRows[0].columns_count){
+                    results = resultRows[0].columns_count;
+                }
+
                 // res.json(results);
                 
+                let grResults = 0;
                 const prevQuery = `
                     SELECT SUM(R060) AS sum_r060 FROM ${tableName};
                 `
-                const [grResults] = await connection.query(prevQuery);
+                const [grResultRows] = await connection.query(prevQuery);
+                if (grResultRows.length>0&&grResultRows[0].sum_r060){
+                    grResults = grResultRows[0].sum_r060
+                }
 
                 res.json({results,grResults});
 
@@ -67,7 +76,7 @@ const grDataWebTm = async () => {
         } catch (error) {
             console.error('데이터 가져오기 실패:', error);
             res.status(500).json({ error: 'Internal Server Error' });
-        }
+        } 
     });
 
     app.listen(port, () => {

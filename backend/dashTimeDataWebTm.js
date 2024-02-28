@@ -23,7 +23,7 @@ const dashTimeDataWebTm = async () => {
         } catch (error) {
             console.error('데이터 가져오기 실패:', error);
             res.status(500).json({ error: 'Internal Server Error' });
-        }
+        } 
     });
 
     app.listen(port, () => {

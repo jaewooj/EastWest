@@ -26,15 +26,15 @@ const getWeatherData = async () => {
     };
 
     try {
-        const response = await axios.get(url, { params: queryParams });
+        const response1 = await axios.get(url, { params: queryParams });
         
-        if (response.data.response.body.items && response.data.response.body.items.item) {
-            const fcstValue = response.data.response.body.items.item[0].fcstValue;
-            
-            if (fcstValue !== undefined) {
+        if (response1.data.response.body.items && response1.data.response.body.items.item) {
+            const fcstValue1 = response1.data.response.body.items.item[0].fcstValue;
+            // console.log(response1.data.body);
+            if (fcstValue1 !== undefined) {
                 // console.log(fcstValue);
                 // console.log('a');
-                return fcstValue;
+                return fcstValue1;
             } else {
                 console.error('fcstValue is undefined.');
                 throw new Error('fcstValue is undefined.');

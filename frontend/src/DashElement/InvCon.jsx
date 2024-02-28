@@ -1,10 +1,27 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import './InvCon.css'
-import { useState } from 'react';
 import { IoMdClose } from "react-icons/io";
+import axios from 'axios';
 import PopupInv from '../InvElement/PopupInv';
 
 const InvCon = () => {
+
+    const [rtData,setRtData] = useState([]);
+
+    useEffect(()=>{
+        const realTimeGrCt = async ()=> {
+            try {
+                const response = await axios.get(`http://localhost:5020/realtimeData`)
+                setRtData(response.data[0]);
+                // console.log(response.data[0].R002);
+                // console.log(response.data[0]);
+            } catch(error) {
+
+            }
+        }
+        realTimeGrCt();
+
+    },[]);
 
     const [popup, setPopup] = useState(false);
     const [invTitle, setInvTitle] = useState('인버터 1');
@@ -43,13 +60,13 @@ const InvCon = () => {
                                         <td>전체 누적 발전량</td>
                                     </tr>
                                     <tr>
-                                        <td>412.2
+                                        <td>{rtData.R008}
                                             <span>V</span>
                                         </td>
-                                        <td>159.2
+                                        <td>{rtData.R009}
                                             <span>A</span>
                                         </td>
-                                        <td>57.7
+                                        <td>{rtData.R007}
                                             <span>kW</span>
                                         </td>
                                         <td>123.2
@@ -183,7 +200,7 @@ const InvCon = () => {
                 <div className="moreBg" onClick={()=>popupOff()}></div>
             )}
             {popup&&(
-                <PopupInv popupOff={popupOff} invTitle={invTitle}/>
+                <PopupInv popupOff={popupOff} invTitle={invTitle} rtData={rtData}/>
             )}
             
 

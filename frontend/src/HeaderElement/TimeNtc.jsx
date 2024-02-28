@@ -89,7 +89,7 @@ const TimeNtc = () => {
         },
         {
             no:9,
-            title:'모듈 어레이 온도 이상',
+            title:'모듈 어레이 2-2 온도 이상',
             writer:'관리자',
             time:'2024-02-21',
         },
@@ -124,6 +124,8 @@ const TimeNtc = () => {
             time:'2024-02-21',
         }, */
     ]
+    // const lastItem = data[data.length-1];
+
     const reverseData = data.reverse();
     const [currentData, setCurrentData] = useState([]);
     useEffect(() => {
@@ -137,6 +139,10 @@ const TimeNtc = () => {
         setCurrentPage(page);
         setIsClicked(page);
     };
+    
+    const lastItem = reverseData[0].title;
+    // console.log(lastItem);
+
 
     return (
         <div className="timeNtc">
@@ -146,7 +152,7 @@ const TimeNtc = () => {
             <div className="notice">
                 <div className="ntcTt">
                     <div className="ntcTtAni">
-                        <p>공지사항 : 장비관리에 주의 필요</p>
+                        <p>공지사항 : {lastItem}</p>
 
                     </div>
                     <img src="/images/more1.png" onClick={popupOn}/>

@@ -17,12 +17,12 @@ const mysql = require('mysql2/promise');
 let pool;
 
 const createPool = () => {
-    pool = mysql.createPool({
+    return mysql.createPool({
         host: 'localhost',
         user: 'root',
         password: '12345',
         database: 'rems',
-        connectionLimit: 10,
+        connectionLimit: 20,
         waitForConnections: true,
         queueLimit: 0,
         maxIdle: 0,
@@ -31,17 +31,29 @@ const createPool = () => {
     });
 };
 
-createPool();
-
+/* createPool(); */
 const connectDatabase = async () => {
     try {
         if (!pool || pool._closed) {
-            createPool();
+            pool = createPool();
         }
-        return await pool.getConnection();
+        // 연결을 가져오기 전에 상태 확인
+        const connection = await pool.getConnection();
+        return connection;
     } catch (error) {
         console.error('데이터베이스 연결 실패:', error);
-        throw error;
+        if (pool) {
+            try {
+                // 연결 종료
+                await pool.end();
+            } catch (err) {
+                console.error('기존 풀 닫기 실패:', err);
+            }
+        }
+        // 새로운 풀 생성 및 연결 시도
+        pool = createPool();
+        const connection = await pool.getConnection();
+        return connection;
     }
 };
 

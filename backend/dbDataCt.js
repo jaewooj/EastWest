@@ -27,7 +27,7 @@ const dbDataCt = async () => {
         // 연결 닫기
         // await connection.end();
         if (connection) {
-            connection.destroy();
+            connection.release();
         }
     }
 }
