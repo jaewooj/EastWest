@@ -3,6 +3,7 @@ import './MonGr.css'
 import { BarChart } from '@mui/x-charts/BarChart';
 import { useState, useEffect } from 'react';
 import axios from 'axios'; 
+import webUrl from '../common/weburl';
 
 const MonGr = () => {
     
@@ -16,7 +17,7 @@ const MonGr = () => {
                 const now = new Date();
                 const year = now.getFullYear();
                 const tableName = `DATA_${year}_year`;
-                const response = await axios.get(`http://localhost:5033/gendata/${tableName}`);
+                const response = await axios.get(`http://${webUrl}:5033/gendata/${tableName}`);
                 // setSearchResults(response.data);
                 // console.log(response.data)
                 const newYData = response.data.map(item=>{

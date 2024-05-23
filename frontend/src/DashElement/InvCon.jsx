@@ -3,6 +3,7 @@ import './InvCon.css'
 import { IoMdClose } from "react-icons/io";
 import axios from 'axios';
 import PopupInv from '../InvElement/PopupInv';
+import webUrl from '../common/weburl';
 
 const InvCon = () => {
 
@@ -11,7 +12,7 @@ const InvCon = () => {
     useEffect(()=>{
         const realTimeGrCt = async ()=> {
             try {
-                const response = await axios.get(`http://localhost:5020/realtimeData`)
+                const response = await axios.get(`http://${webUrl}:5020/realtimeData`)
                 setRtData(response.data[0]);
                 // console.log(response.data[0].R002);
                 // console.log(response.data[0]);

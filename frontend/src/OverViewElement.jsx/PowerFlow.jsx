@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import './PowerFlow.css'
 import * as d3 from 'd3';
 import axios from 'axios';
+import webUrl from '../common/weburl';
 
 const PowerFlow = () => {
     const svgRef = useRef(null);
@@ -98,7 +99,7 @@ const PowerFlow = () => {
     useEffect(()=>{
         const realTimeTotalData = async () => {
           try {
-            const response = await axios.get(`http://localhost:5020/realtimeData`);
+            const response = await axios.get(`http://${webUrl}:5020/realtimeData`);
             setArray1_1(Number(response.data[0].R001));
             setArray1_2(Number(response.data[0].R004));
             setInverter1(Number(response.data[0].R007));

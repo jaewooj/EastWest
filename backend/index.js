@@ -1,5 +1,9 @@
 
 const cron = require('node-cron');
+const  express  = require('express');
+const  cors = require('cors');
+const app = express();
+const port = 81; 
 const dataDefTable = require('./dataDefTable');
 const dataCtTable = require('./dataCtTable');
 const defDataInput = require('./defDataInput');
@@ -147,5 +151,16 @@ const runTasks = async () => {
     };
 
 };
+
+app.use( express.json());
+app.use(cors());
+app.get('/', (req, res) => {
+    res.send('안녕');
+  });
+  
+app.listen( port , () => {
+  console.log('서버 접속 완료')
+})
+
 
 runTasks();

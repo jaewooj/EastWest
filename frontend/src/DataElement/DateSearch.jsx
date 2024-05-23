@@ -5,6 +5,7 @@ import './DateSearch.css'
 import axios from 'axios'; 
 import { useSelector, useDispatch } from 'react-redux';
 import { changeArrayItem, changeIntegratedItem } from '../store/modules/itemSlice';
+import webUrl from '../common/weburl';
 
 const DateSearch = () => {
     const selectedOption = useSelector(state => state.item.selectedOption);
@@ -42,7 +43,7 @@ const DateSearch = () => {
                 const month = now.getMonth()+1;
                 const day = now.getDate();
                 const tableName = `DATA_${year}_${month}_${day}_hour`;
-                const response = await axios.get(`http://localhost:5021/search/${tableName}`)
+                const response = await axios.get(`http://${webUrl}:5021/search/${tableName}`)
                 setSearchResults(response.data) // 검색결과를 상태에 저장
                 /* console.log(`${searchResults}`) */
             } catch (error) {

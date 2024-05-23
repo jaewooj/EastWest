@@ -9,6 +9,7 @@ import YrGr from '../GrElement/YrGr';
 import AccumGr from '../GrElement/AccumGr';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
+import webUrl from '../common/weburl';
 
 const GrCon = () => {
 
@@ -27,7 +28,7 @@ const GrCon = () => {
         const realTimeGrCt = async () => {
             try {
                 // RealGr
-                const response = await axios.get(`http://localhost:5020/realtimeData`)
+                const response = await axios.get(`http://${webUrl}:5020/realtimeData`)
                 setRealTimeGr(response.data[0].R060) // 검색결과를 상태에 저장
 
                 // RealTm
@@ -36,7 +37,7 @@ const GrCon = () => {
                 const month = now.getMonth() + 1;
                 const day = now.getDate();
                 const tableName = `DATA_${year}_${month}_${day}`;
-                const response1 = await axios.get(`http://localhost:5041/grOverview/${tableName}`)
+                const response1 = await axios.get(`http://${webUrl}:5041/grOverview/${tableName}`)
                 // console.log(response1.data[0].columns_count);
                 // const timeResults = (response1.data.results[0].columns_count/60).toFixed(1);
                 const timeResults = (Number(response1.data.results/60)).toFixed(1);
@@ -48,7 +49,7 @@ const GrCon = () => {
                 yesterday.setDate(yesterday.getDate()-1);
                 const prevDay = yesterday.getDate();
                 const prevTableName = `DATA_${year}_${month}_${prevDay}`;
-                const response2 = await axios.get(`http://localhost:5041/grOverview/${prevTableName}`)
+                const response2 = await axios.get(`http://${webUrl}:5041/grOverview/${prevTableName}`)
                 // console.log(response2.data[0].columns_count);
                 // const prevTimeResults = (response2.data.results[0].columns_count/60).toFixed(1);
                 const prevTimeResults = (Number(response2.data.results/60)).toFixed(1);
@@ -69,7 +70,7 @@ const GrCon = () => {
                 const realMonth = now.getMonth();
                 const prevMonth = now.getMonth()-1;
                 const yearTableName = `DATA_${year}_year`;
-                const response3 = await axios.get(`http://localhost:5041/grOverview/${yearTableName}`)
+                const response3 = await axios.get(`http://${webUrl}:5041/grOverview/${yearTableName}`)
                 const monthGrResults = ((response3.data.yearResults[realMonth].R060));
                 setMonthGr(monthGrResults);
                 const prevMonthGrResults = ((response3.data.yearResults[prevMonth].R060));
@@ -83,13 +84,13 @@ const GrCon = () => {
                 setYearGr(yearResults);
                 const prevYear = now.getFullYear()-1;
                 const prevYearTableName = `DATA_${prevYear}_year`;
-                const response4 = await axios.get(`http://localhost:5041/grOverview/${prevYearTableName}`)
+                const response4 = await axios.get(`http://${webUrl}:5041/grOverview/${prevYearTableName}`)
                 const prevYearResults = response4?response4.data.yearResults.reduce((acc,arr)=>acc+Number(arr.R060),0):0;
                 setPrevYearGr(prevYearResults);
 
                 // AccumGr
                 const accumTableName = `DATA_accum`;
-                const response5 = await axios.get(`http://localhost:5041/grOverview/${accumTableName}`)
+                const response5 = await axios.get(`http://${webUrl}:5041/grOverview/${accumTableName}`)
                 const accumrResults = ((response5.data.accumResults[0].accum_R060));
                 setAccumGr(accumrResults);
 

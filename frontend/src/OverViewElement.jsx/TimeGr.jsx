@@ -4,6 +4,7 @@ import { BarChart } from '@mui/x-charts/BarChart';
 import { useState, useEffect } from 'react';
 import axios from 'axios'; // axios import 추가
 import XAxisData from '../SearchElement/XAxisData';
+import webUrl from '../common/weburl';
 
 const TimeGr = () => {
 
@@ -21,7 +22,7 @@ const TimeGr = () => {
                 const month = now.getMonth() + 1;
                 const day = now.getDate();
                 const tableName = `DATA_${year}_${month}_${day}_hour`;
-                const response = await axios.get(`http://localhost:5031/gendata/${tableName}`);
+                const response = await axios.get(`http://${webUrl}:5031/gendata/${tableName}`);
                 setSearchResults(response.data);
                 // console.log(response.data)
             } catch (error) {

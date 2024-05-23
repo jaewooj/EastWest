@@ -2,6 +2,7 @@ import React from 'react';
 import './EpEffect.css'
 import { useState, useEffect } from 'react';
 import axios from 'axios'; 
+import webUrl from '../common/weburl';
 
 const EpEffect = () => {
 
@@ -26,7 +27,7 @@ const EpEffect = () => {
                 const year = now.getFullYear();
                 const month = now.getMonth();
                 const tableName = `DATA_${year}_year`;
-                const response = await axios.get(`http://localhost:5033/gendata/${tableName}`);
+                const response = await axios.get(`http://${webUrl}:5033/gendata/${tableName}`);
                 // setSearchResults(response.data);
                 // console.log(response.data)
                 const newYData = response.data.map(item=>{
@@ -37,7 +38,7 @@ const EpEffect = () => {
 
                 // 누적
                 const accumTableName = `DATA_accum`;
-                const response1 = await axios.get(`http://localhost:5041/grOverview/${accumTableName}`)
+                const response1 = await axios.get(`http://${webUrl}:5041/grOverview/${accumTableName}`)
                 const accumResults = ((response1.data.accumResults[0].accum_R060));
                 setAccumData(accumResults);
                 // console.log(accumResults);

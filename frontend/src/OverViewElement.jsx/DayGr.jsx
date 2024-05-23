@@ -3,6 +3,7 @@ import './DayGr.css'
 import { BarChart } from '@mui/x-charts/BarChart';
 import { useState, useEffect } from 'react';
 import axios from 'axios'; 
+import webUrl from '../common/weburl';
 
 const DayGr = () => {
     
@@ -27,7 +28,7 @@ const DayGr = () => {
                 const year = now.getFullYear();
                 const month = now.getMonth() + 1;
                 const tableName = `DATA_${year}_${month}_month`;
-                const response = await axios.get(`http://localhost:5032/gendata/${tableName}`);
+                const response = await axios.get(`http://${webUrl}:5032/gendata/${tableName}`);
                 // console.log(response.data)
                 const newYData = response.data.map(item=>{
                     return parseFloat(item.R060)
