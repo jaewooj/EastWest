@@ -22,11 +22,14 @@ const dateTimeInput = async () => {
 
     try {
         connection = await connectDatabase();
-        const [rows] = await connection.execute(getMaxTimeNmQuery);
-        const maxTimeNm = rows[0].max_timeNm || 0;
-        await connection.execute(insertQuery,[maxTimeNm+1,dateTime]);
-        
-        console.log(`Data inserted successfully into ${tableName}:${hour}:${minute}`);
+        if(connection){
+            const [rows] = await connection.execute(getMaxTimeNmQuery);
+            const maxTimeNm = rows[0].max_timeNm || 0;
+            await connection.execute(insertQuery,[maxTimeNm+1,dateTime]);
+            console.log(`Data inserted successfully into ${tableName}:${hour}:${minute}`);
+        } else {
+            console.error('Connection is already closed.');
+        }
     } catch (error) {
         console.error('Error occurred:', error);
     } finally {

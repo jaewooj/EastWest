@@ -29,23 +29,25 @@ const grDataWebTm = async () => {
                     SELECT COUNT(*) AS columns_count FROM ${tableName} WHERE R060 !=0;
                 `;
                 let results = 0;
-                const [resultRows] = await connection.query(query);
-                if (resultRows.length>0&&resultRows[0].columns_count){
-                    results = resultRows[0].columns_count;
-                }
-
-                // res.json(results);
-                
                 let grResults = 0;
-                const prevQuery = `
-                    SELECT SUM(R060) AS sum_r060 FROM ${tableName};
-                `
-                const [grResultRows] = await connection.query(prevQuery);
-                if (grResultRows.length>0&&grResultRows[0].sum_r060){
-                    grResults = grResultRows[0].sum_r060
+                try {
+                    const [resultRows] = await connection.query(query);
+                    if (resultRows.length>0&&resultRows[0].columns_count){
+                        results = resultRows[0].columns_count;
+                    }
+
+                    const prevQuery = `
+                        SELECT SUM(R060) AS sum_r060 FROM ${tableName};
+                    `
+                    const [grResultRows] = await connection.query(prevQuery);
+                    if (grResultRows.length>0&&grResultRows[0].sum_r060){
+                        grResults = grResultRows[0].sum_r060
+                    }
+                } catch (error) {
+                    console.error('데이터 가져오기 실패:', error);
                 }
 
-                res.json({results,grResults});
+                res.json({ results, grResults });
 
             } else if(tableName===`DATA_${year}_year`||tableName===`DATA_${prevYear}_year`){
                 
